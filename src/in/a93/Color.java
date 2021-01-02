@@ -16,4 +16,19 @@ public class Color extends Tuple {
 				c1.getBlue() * c2.getBlue()
 				);
 	}
+	
+	@Override
+	public Color scalarMultiply(float x) {
+		return new Color(this.getX() * x, this.getY() * x, this.getZ() * x);
+	}
+	
+	public Color add(Color other) {
+		return new Color(this.getRed() + other.getRed(), this.getGreen() + other.getGreen(), this.getBlue() + other.getBlue());
+	}
+	
+	public void setBlack() {
+		this.setX(0);
+		this.setY(0);
+		this.setZ(0);
+	}
 }

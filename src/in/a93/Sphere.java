@@ -15,10 +15,12 @@ public class Sphere {
 	
 	private String uuid;
 	private Matrix transform;
+	private Material material;
 	
 	public Sphere() {
 		this.transform = Matrix.getIdentityMatrix(4, 4);
 		this.uuid = UUID.randomUUID().toString();
+		this.material = new Material();
 	}
 	
 	public static Intersection[] intersect(Sphere sphere, Ray originalRay) {
@@ -72,6 +74,14 @@ public class Sphere {
 	
 	public Matrix getTransform() { return this.transform; }
 
+	public Material getMaterial() {
+		return this.material;
+	}
+	
+	public void setMaterial(Material newMaterial) {
+		this.material = newMaterial;
+	}
+	
 	public static Vector normalAt(Sphere sphere, Point point) {
 		/*
 		 * Normal at the point is equal to the Vector between sphere's origin and the point

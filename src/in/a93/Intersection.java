@@ -1,32 +1,32 @@
 package in.a93;
 
-public class Intersection {
+import java.util.Arrays;
+
+public class Intersection implements Comparable<Intersection> {
 	private float t;
 	private Sphere object;
-	private static float DELTA = 0.00001f;
+//	private static float DELTA = 0.00001f;
 	
 	public Intersection(float t, Sphere object) {
 		this.t = t;
 		this.object = object;
 	}
 	
-	public static Intersection[] intersections(Intersection... intersections) {	return intersections; } //TODO: Sort based on t value
+	public static Intersection[] intersections(Intersection... intersections) {	
+		Arrays.sort(intersections);
+		return intersections;
+	}
 	
 	public float getT() { return this.t; }
 	
 	public Sphere getObject() {	return this.object; }
 	
 	public static Intersection hit(Intersection[] intersections) {
-
-		Intersection result = intersections[0];
+		Intersection result = null;
 		
 		for (Intersection i : intersections) {
-
 			if (i.getT() < 0) continue;
-			else if (result == null) result = i;
-			else if ((result.getT() - i.getT()) < Intersection.DELTA) continue;
-			else if ((result.getT() - i.getT()) < 0) continue;
-			else result = i;
+			else return i;
 		}
 		
 		return result;
@@ -34,10 +34,11 @@ public class Intersection {
 	
 	@Override
 	public String toString() {
-		StringBuilder s = new StringBuilder();
-		
-		s.append(t);
-		
+		StringBuilder s = new StringBuilder();		
+		s.append(t);		
 		return s.toString();
 	}
+
+	@Override
+	public int compareTo(Intersection o) { return Double.compare(this.getT(), o.getT()); }
 }
