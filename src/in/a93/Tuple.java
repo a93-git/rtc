@@ -78,6 +78,10 @@ public class Tuple {
 		return (a.x * b.x) + (a.y * b.y) + (a.z * b.z) + (a.w * b.w);
 	}
 	
+	public static Vector reflect(Vector in, Vector normal) {
+		return in.subtract(normal.scalarMultiply(2 * Tuple.dot(in, normal)));
+	}
+	
 	public float getX() {
 		return this.x;
 	}
