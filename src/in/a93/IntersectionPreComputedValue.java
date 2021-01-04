@@ -2,7 +2,7 @@ package in.a93;
 
 public class IntersectionPreComputedValue {
 	private float intersectionT;
-	private Sphere object;
+	private Shape object;
 	private Point point;
 	private Vector eyeVector;
 	private Vector normalVector;
@@ -42,7 +42,7 @@ public class IntersectionPreComputedValue {
 		return intersectionT;
 	}
 
-	public Sphere getObject() {
+	public Shape getObject() {
 		return object;
 	}
 

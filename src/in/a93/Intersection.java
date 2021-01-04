@@ -4,10 +4,10 @@ import java.util.Arrays;
 
 public class Intersection implements Comparable<Intersection> {
 	private float t;
-	private Sphere object;
+	private Shape object;
 //	private static float DELTA = 0.00001f;
 	
-	public Intersection(float t, Sphere object) {
+	public Intersection(float t, Shape object) {
 		this.t = t;
 		this.object = object;
 	}
@@ -19,7 +19,7 @@ public class Intersection implements Comparable<Intersection> {
 	
 	public float getT() { return this.t; }
 	
-	public Sphere getObject() {	return this.object; }
+	public Shape getObject() {	return this.object; }
 	
 	public static Intersection getHit(Intersection[] intersections) {
 		Intersection result = null;
