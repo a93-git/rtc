@@ -60,7 +60,7 @@ public class SphereSilhouette {
 						Point point = Ray.getPosition(ray, hit.getT());
 						Vector normalVector = Sphere.normalAt(sphere, point);
 						Vector eyeVector = ray.getDirection().scalarMultiply(-1);
-						color = Material.getLighting(hit.getObject().getMaterial(), light, point, eyeVector, normalVector);
+						color = Material.getLighting(hit.getObject().getMaterial(), light, point, eyeVector, normalVector, false);
 						canvas.setColorAt(i, j, color);
 					}
 				}

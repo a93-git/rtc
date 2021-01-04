@@ -93,4 +93,71 @@ public class WorldTest {
 		System.out.println("Color of outer sphere is: " + world.getObjects().get(0).getMaterial().getColor());
 		
 	}
+	
+	public static void test1() {
+		World w = new World();
+		
+		Point p = new Point(0, 10, 0);
+		
+		System.out.println(w.isShadowed(p));
+	}
+	
+	public static void test2() {
+		World w = new World();
+		
+		Point p = new Point(10, -10, 10);
+		
+		System.out.println(w.isShadowed(p));
+	}
+	
+	public static void test3() {
+		World w = new World();
+		
+		Point p = new Point(-20, 20, -20);
+		
+		System.out.println(w.isShadowed(p));
+	}
+	
+	public static void test4() {
+		World w = new World();
+		
+		Point p = new Point(-2, 2, -2);
+		
+		System.out.println(w.isShadowed(p));
+	}
+	
+	public static void test5() {
+		World w = new World();
+		
+		w.setLight(0, new Light(new Point(0, 0, -10), new Color(1, 1, 1)));
+		w.getObjects().get(1).setTransform(w.getObjects().get(1).getTransform().translate(0, 0, 10));
+		
+		Ray ray = new Ray(new Point(0, 0, 5), new Vector(0, 0, 1));
+		Intersection i = new Intersection(4, w.getObjects().get(1));
+		
+		IntersectionPreComputedValue comps = new IntersectionPreComputedValue(i, ray);
+		Color c = World.getShadeHit(w, comps);
+		System.out.println(c);
+	}
+	
+	public static void test6() {
+		World w = new World();
+		
+		Ray ray = new Ray(new Point(0, 0, -5), new Vector(0, 0, 1));
+		Sphere sphere = new Sphere();
+		sphere.setTransform(sphere.getTransform().translate(0, 0, 1));
+
+		w.addObjects(sphere);
+		
+		Light light = new Light(new Point(0, 0, -10), new Color(1, 1, 1));
+		w.addLight(light);
+
+		Intersection i = new Intersection(5, sphere);
+		
+		IntersectionPreComputedValue computed = new IntersectionPreComputedValue(i, ray);
+		
+		System.out.println(computed.getOverPoint().getZ() < IntersectionPreComputedValue.getDELTA());
+		System.out.println(computed.getPoint().getZ() > computed.getOverPoint().getZ());
+		
+	}
 }

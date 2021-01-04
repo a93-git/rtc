@@ -53,6 +53,8 @@ public class Tuple {
 	public Tuple add(Tuple other) {
 		return new Tuple(this.x + other.x, this.y + other.y, this.z + other.z, this.w + other.w);
 	}
+
+
 	
 	public Tuple subtract(Tuple other) {
 		return new Tuple(this.x - other.x, this.y - other.y, this.z - other.z, this.w - other.w);

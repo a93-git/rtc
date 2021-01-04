@@ -91,34 +91,37 @@ public class Material {
 		this.shininess = shininess;
 	}
 	
-	public static Color getLighting(Material material, Light light, Point point, Vector eyeVector, Vector normalVector) {
+	public static Color getLighting(Material material, Light light, Point point, Vector eyeVector, Vector normalVector, boolean inShadow) {
 		Color effectiveColor = Color.schurProduct(material.getColor(), light.getIntensity());
 		Vector lightVector = Vector.normalize(light.getPosition().subtract(point));
 		Color ambientColor = effectiveColor.scalarMultiply(material.getAmbient());
-		
-		Color diffuseColor = new Color(0, 0, 0);
-		Color specularColor = new Color(0, 0, 0);
-		
-		float lightDotNormal = Vector.dot(lightVector, normalVector);
-		
-		if (lightDotNormal < 0) {
-			diffuseColor.setBlack();
-			specularColor.setBlack();
-		} else {
-			diffuseColor = effectiveColor.scalarMultiply(material.getDiffuse() * lightDotNormal);
 
-//			Vector reflectVector = Vector.reflect(lightVector, normalVector);
-			Vector reflectVector = Vector.reflect(lightVector.scalarMultiply(-1), normalVector);
-			float reflectDotEye = Tuple.dot(reflectVector, eyeVector);
-			if (reflectDotEye <= 0) {
+		if (inShadow) return ambientColor; // diffuse and specular components are ignored in shadow
+		else {
+			Color diffuseColor = new Color(0, 0, 0);
+			Color specularColor = new Color(0, 0, 0);
+			
+			float lightDotNormal = Vector.dot(lightVector, normalVector);
+			
+			if (lightDotNormal < 0) {
+				diffuseColor.setBlack();
 				specularColor.setBlack();
 			} else {
-				float factor = (float) Math.pow(reflectDotEye, material.shininess);
-				specularColor = light.getIntensity().scalarMultiply(material.getSpecular() * factor);
+				diffuseColor = effectiveColor.scalarMultiply(material.getDiffuse() * lightDotNormal);
+	
+				//	Vector reflectVector = Vector.reflect(lightVector, normalVector);
+				Vector reflectVector = Vector.reflect(lightVector.scalarMultiply(-1), normalVector);
+				float reflectDotEye = Tuple.dot(reflectVector, eyeVector);
+				if (reflectDotEye <= 0) {
+					specularColor.setBlack();
+				} else {
+					float factor = (float) Math.pow(reflectDotEye, material.shininess);
+					specularColor = light.getIntensity().scalarMultiply(material.getSpecular() * factor);
+				}
 			}
+	
+			return ambientColor.add(diffuseColor.add(specularColor));
 		}
-
-		return ambientColor.add(diffuseColor.add(specularColor));
 	}
 	
 	

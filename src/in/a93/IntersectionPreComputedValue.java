@@ -7,6 +7,10 @@ public class IntersectionPreComputedValue {
 	private Vector eyeVector;
 	private Vector normalVector;
 	private boolean inside;
+	private Point overPoint;
+	
+	// Prevents acne in the renders
+	private static float DELTA = 0.0015f;
 	
 	public IntersectionPreComputedValue(Intersection intersection, Ray ray) {
 		this.intersectionT = intersection.getT();
@@ -22,6 +26,16 @@ public class IntersectionPreComputedValue {
 			this.inside = false;
 			this.normalVector = _tempNormalVector.scalarMultiply(1);
 		}
+		
+		this.overPoint = this.point.add(this.normalVector.scalarMultiply(DELTA));
+	}
+
+	public Point getOverPoint() {
+		return overPoint;
+	}
+
+	public static float getDELTA() {
+		return DELTA;
 	}
 
 	public float getIntersectionT() {

@@ -18,7 +18,13 @@ public class Point extends Tuple {
 	}
 
 	public Vector subtract(Point other) {
+		// Subtracting a point from another gives a Vector
 		return new Vector(this.getX() - other.getX(), this.getY() - other.getY(), this.getZ() - other.getZ(), this.getW() - other.getW());
+	}
+	
+	public Point add(Vector other) {
+		// Adding a vector to a point gives a Point
+		return new Point(this.getX() + other.getX(), this.getY() + other.getY(), this.getZ() + other.getZ(), this.getW() + other.getW());
 	}
 	
 	@Override
