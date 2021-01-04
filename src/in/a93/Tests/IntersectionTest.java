@@ -60,9 +60,9 @@ public class IntersectionTest {
 		Intersection[] il3 = Intersection.intersections(i4, i3);
 		Intersection[] il4 = Intersection.intersections(i5, i6, i7, i2);
 		
-		System.out.println(Intersection.hit(il1));
-		System.out.println(Intersection.hit(il2));
-		System.out.println(Intersection.hit(il3));
-		System.out.println(Intersection.hit(il4));
+		System.out.println(Intersection.getHit(il1));
+		System.out.println(Intersection.getHit(il2));
+		System.out.println(Intersection.getHit(il3));
+		System.out.println(Intersection.getHit(il4));
 	}
 }

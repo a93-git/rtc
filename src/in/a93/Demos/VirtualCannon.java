@@ -4,7 +4,6 @@ import in.a93.Canvas;
 import in.a93.Color;
 import in.a93.Environment;
 import in.a93.Point;
-import in.a93.Projectile;
 import in.a93.Save;
 import in.a93.Vector;
 import in.a93.Tests.ProjectileTest;

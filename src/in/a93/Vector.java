@@ -8,10 +8,10 @@ public class Vector extends Tuple {
 	public Vector(float x, float y, float z) {
 		super(x, y, z, 0.0f);
 	}
-	
+
 	public static Vector normalize(Vector t) {
 		float m = t.magnitude();
-		return new Vector(t.getX() / m, t.getY() / m, t.getZ() / m);
+		return new Vector(t.getX() / m, t.getY() / m, t.getZ() / m, t.getW() / m);
 	}
 	
 	public static Vector cross(Vector a, Vector b) {
@@ -20,6 +20,11 @@ public class Vector extends Tuple {
 				a.getZ() * b.getX() - a.getX() * b.getZ(), 
 				a.getX() * b.getY() - a.getY() * b.getX()
 				);
+	}
+	
+	@Override
+	public float magnitude() {
+		return (float) Math.sqrt(Math.pow(this.getX(), 2) + Math.pow(this.getY(), 2) + Math.pow(this.getZ(), 2) + Math.pow(this.getW(), 2));
 	}
 	
 	public Vector(float x, float y, float z, float w) {

@@ -1,8 +1,8 @@
 package in.a93.Tests;
 
 import in.a93.Environment;
-import in.a93.Projectile;
 import in.a93.Tuple;
+import in.a93.Demos.Projectile;
 
 public class ProjectileTest {
 	

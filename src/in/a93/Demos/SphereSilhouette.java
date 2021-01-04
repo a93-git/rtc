@@ -15,8 +15,9 @@ import in.a93.Material;
 public class SphereSilhouette {
 	
 	public static void drawSphere() {
-		int canvasPixels = 500;
-		Canvas canvas = new Canvas(canvasPixels, canvasPixels);
+		int canvasPixelsX = 500;
+		int canvasPixelsY = 500;
+		Canvas canvas = new Canvas(canvasPixelsX, canvasPixelsY);
 		Color color = null;
 		Sphere sphere = new Sphere();
 		Point rayOrigin = new Point(0, 0, -10);
@@ -24,7 +25,7 @@ public class SphereSilhouette {
 		float wallZ = 10;
 		float wallSize = 7;
 		
-		float pixelSize = wallSize / canvasPixels;
+		float pixelSize = wallSize / canvasPixelsX;
 		
 		float half = wallSize / 2;
 		float worldY = 0f;
@@ -33,12 +34,13 @@ public class SphereSilhouette {
 		sphere.setMaterial(new Material());
 		sphere.getMaterial().setColor(new Color(1.0f, 0.2f, 1.0f));
 //		sphere.setTransform(Matrix.shearing(0.01f, 0, 0.11f, 0, 0, 0));
+//		sphere.setTransform(Matrix.scaling(2f,  2f,  2f));
 //		sphere.getMaterial().setColor(new Color(1.0f, 0, 0));
-		
+		sphere.getTransform().scale(0.25f, 0.5f, 0.75f);
 		Light light = new Light(new Point(-10, 10, -10), new Color(1, 1, 1));
 //		int count = 0;
-		for (int i = 0; i < canvasPixels; i++) {
-			for (int j = 0; j < canvasPixels; j++) {
+		for (int i = 0; i < canvasPixelsX; i++) {
+			for (int j = 0; j < canvasPixelsY; j++) {
 //				count++;
 //				System.out.println("Ray count: " + count);
 				worldY = half - (pixelSize * i);
@@ -53,7 +55,7 @@ public class SphereSilhouette {
 				if (xs == null) {
 					continue;
 				} else {
-					Intersection hit = Intersection.hit(xs); 
+					Intersection hit = Intersection.getHit(xs); 
 					if (!(hit == null)) {
 						Point point = Ray.getPosition(ray, hit.getT());
 						Vector normalVector = Sphere.normalAt(sphere, point);

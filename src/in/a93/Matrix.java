@@ -91,9 +91,9 @@ public class Matrix {
 		return result;
 	}
 
-	public static Matrix multiply(Object matrix1, Object matrix2) {
-		Matrix a = (Matrix) matrix1;
-		Matrix b = (Matrix) matrix2;
+	public static Matrix multiply(Matrix a, Matrix b) {
+//		Matrix a = (Matrix) matrix1;
+//		Matrix b = (Matrix) matrix2;
 		
 		Matrix result = new Matrix(a.getRowCount(), b.getColumnCount());
 		
@@ -333,7 +333,27 @@ public class Matrix {
 		return Matrix.multiply(shearingMatrix, this);
 	}
 	
-
+	public static Matrix getViewTransform(Point from, Point to, Vector up) {
+		Matrix result = Matrix.getIdentityMatrix(4, 4);
+		
+		Vector forward = Vector.normalize(to.subtract(from));
+		Vector left = Vector.cross(forward, Vector.normalize(up));
+		Vector trueUp = Vector.cross(left, forward);
+		
+		result.setElementAt(0, 0, left.getX());
+		result.setElementAt(0, 1, left.getY());
+		result.setElementAt(0, 2, left.getZ());
+		result.setElementAt(1, 0, trueUp.getX());
+		result.setElementAt(1, 1, trueUp.getY());
+		result.setElementAt(1, 2, trueUp.getZ());
+		result.setElementAt(2, 0, -forward.getX());
+		result.setElementAt(2, 1, -forward.getY());
+		result.setElementAt(2, 2, -forward.getZ());
+		
+		result = Matrix.multiply(result, Matrix.translation(-from.getX(), -from.getY(), -from.getZ()));
+		
+		return result;
+	}
 
 
 

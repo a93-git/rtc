@@ -21,11 +21,10 @@ public class Intersection implements Comparable<Intersection> {
 	
 	public Sphere getObject() {	return this.object; }
 	
-	public static Intersection hit(Intersection[] intersections) {
+	public static Intersection getHit(Intersection[] intersections) {
 		Intersection result = null;
-		
 		for (Intersection i : intersections) {
-			if (i.getT() < 0) continue;
+			if ((i == null) || (i.getT() < 0)) continue;
 			else return i;
 		}
 		
@@ -41,4 +40,11 @@ public class Intersection implements Comparable<Intersection> {
 
 	@Override
 	public int compareTo(Intersection o) { return Double.compare(this.getT(), o.getT()); }
+	
+	public static IntersectionPreComputedValue preComputedValue(Intersection intersection, Ray ray ) {
+		IntersectionPreComputedValue value = new IntersectionPreComputedValue(intersection, ray);
+		return value;
+	}
 }
+
+

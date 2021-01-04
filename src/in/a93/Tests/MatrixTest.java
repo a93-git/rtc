@@ -485,4 +485,18 @@ public class MatrixTest {
 		
 		
 	}
+
+	public static void test2() {
+		Matrix a = Matrix.getIdentityMatrix(4, 4);
+		Matrix b = null;
+		try {
+			b = Matrix.getInverseMatrix(a);
+		} catch (MatrixNotInvertibleException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println(a);
+		System.out.println(b);
+	}
+
 }

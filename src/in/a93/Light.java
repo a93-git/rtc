@@ -25,5 +25,11 @@ public class Light {
 		this.position = position;
 	}
 	
-	
+	@Override
+	public String toString() {
+		StringBuilder s = new StringBuilder();
+		s.append(this.getIntensity());
+		s.append("\n" + this.getPosition());
+		return s.toString();
+	}
 }

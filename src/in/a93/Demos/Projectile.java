@@ -1,4 +1,6 @@
-package in.a93;
+package in.a93.Demos;
+
+import in.a93.Tuple;
 
 public class Projectile {
 	private Tuple position;

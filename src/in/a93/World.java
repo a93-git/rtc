@@ -1,0 +1,173 @@
+package in.a93;
+
+import java.util.ArrayList;
+
+public class World {
+	private ArrayList<Light> lights = new ArrayList<Light>();;
+	ArrayList<Sphere> objects = new ArrayList<Sphere>();
+	private Sphere sphere1;
+	private Sphere sphere2;
+	
+	public World() {
+		Light light = new Light(new Point(-10, 10, -10), new Color(1, 1, 1));
+		this.lights.add(light);
+		this.sphere1 = new Sphere();		
+		this.sphere2 = new Sphere();
+		this.objects.add(sphere1);
+		this.objects.add(sphere2);
+		this.sphere1.getMaterial().setColor(new Color(0.8f, 1f, 0.6f));
+		this.sphere1.getMaterial().setDiffuse(0.7f);
+		this.sphere1.getMaterial().setSpecular(0.2f);
+		
+		Matrix sphere2Transform = Matrix.getIdentityMatrix(4, 4).scale(0.5f, 0.5f, 0.5f);
+		this.sphere2.setTransform(sphere2Transform);
+	}
+	
+	public ArrayList<Light> getLight() {
+		return this.lights;
+	}
+
+	public void setLight(int index, Light light) {
+		this.lights.remove(index);
+		this.lights.add(index, light);
+	}
+	
+	public void setObject(int index, Sphere object) {
+		this.objects.remove(index);
+		this.objects.add(index, object);
+	}
+
+	public void addLight(Light light) {
+		this.lights.add(light);
+	}
+
+	public ArrayList<Sphere> getObjects() {
+		return objects;
+	}
+	
+	public void addObjects(Sphere object) {
+		this.objects.add(object);
+	}
+	
+	public Sphere getSphere1() {
+		return sphere1;
+	}
+
+	public void setSphere1(Sphere sphere1) {
+		this.sphere1 = sphere1;
+	}
+
+	public Sphere getSphere2() {
+		return sphere2;
+	}
+
+	public void setSphere2(Sphere sphere2) {
+		this.sphere2 = sphere2;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder s = new StringBuilder();
+		s.append(this.getLight());
+		s.append("\n" + this.getSphere1());
+		s.append("\n" + this.getSphere2());
+		
+		return s.toString();
+	}
+	
+	public static ArrayList<Intersection> intersectWorld(World world, Ray ray) {
+		ArrayList<Intersection> result = new ArrayList<Intersection>();;
+		
+		for (Sphere object : world.getObjects()) {
+			Intersection[] xs = Sphere.intersect(object, ray);
+			if (xs == null) {
+				continue;
+			} else {
+				for (Intersection intersection : xs) {
+					result.add(intersection);
+				}
+			}
+		}
+		
+		result.sort(new IntersectionComparator());
+		return result;
+	}
+	
+	public static Color getShadeHit(World world, IntersectionPreComputedValue comp) {
+		Color result = new Color(0, 0, 0);
+		
+		for (Light light : world.getLight()) {
+			result = result.add(Material.getLighting(
+						comp.getObject().getMaterial(), 
+						light, 
+						comp.getPoint(), 
+						comp.getEyeVector(), 
+						comp.getNormalVector()
+						)
+					);
+		}
+		return result;
+	}
+	
+	public static Color getColorAt(World world, Ray ray) {
+		ArrayList<Intersection> i = World.intersectWorld(world, ray);
+		Intersection[] intersections = new Intersection[i.size()];
+		
+		for (int x = 0; x < i.size(); x++) {
+			intersections[x] = i.get(x);
+		}
+		
+		Intersection hit = Intersection.getHit(intersections);
+		
+		Color result = new Color(0, 0, 0);
+		IntersectionPreComputedValue comps = null;
+		if (hit == null) {
+			return result;
+		} else {
+			comps = new IntersectionPreComputedValue(hit, ray);
+		}
+		
+		return World.getShadeHit(world, comps);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
