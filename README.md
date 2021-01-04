@@ -6,3 +6,6 @@ Java implementation of the ray tracer as described in <a href="https://learning.
 
 ## Chapter 7 - Making a Scene
 ![sphere2](https://github.com/a93-git/rtc/blob/master/sphere2.jpg)
+
+## Chapter 8 - Shadows
+![scene_with_shadows](https://github.com/a93-git/rtc/blob/master/sphere2_with_shadows.jpg)
