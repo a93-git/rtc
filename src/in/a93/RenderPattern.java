@@ -2,7 +2,7 @@ package in.a93;
 
 import in.a93.Exceptions.MatrixNotInvertibleException;
 
-public class RenderPattern {
+public abstract class RenderPattern {
 	public static final Color WHITE = new Color(1, 1, 1);
 	public static final Color BLACK = new Color(0, 0, 0);
 	
@@ -21,18 +21,8 @@ public class RenderPattern {
 		this.secondColor = b;
 		this.transform = Matrix.getIdentityMatrix(4, 4);
 	}
-	
-	public static RenderPattern getStripePattern(Color a, Color b) {
-		return new RenderPattern(a, b);
-	}
-	
-	public Color getStripeAtObject(Shape object, Point point) {
-		Point worldToObjectPoint = getLocalPoint(object, point);
-		Point objectToPatternPoint = getPatternPoint(worldToObjectPoint);
-		
-		return this.getStripeAt(objectToPatternPoint);
-	}
 
+	public abstract Color getPatternAtShape(Shape shape, Point point);
 	
 	/*
 	 * Private functions
@@ -45,12 +35,8 @@ public class RenderPattern {
 	 * else return this.secondColor
 	 * 
 	 */
-	private Color getStripeAt(Point point) {
-		if (Math.floor(point.getX()) % 2 == 0) return this.firstColor;
-		else return this.secondColor;
-	}
 	
-	private Point getPatternPoint(Point worldToObjectPoint) {
+	public Point getPatternPoint(Point worldToObjectPoint) {
 		try {
 			return Matrix.matrix2Point(Matrix.multiply(Matrix.getInverseMatrix(this.getTransform()), Matrix.tuple2Matrix(worldToObjectPoint)));
 		} catch (MatrixNotInvertibleException e) {
@@ -59,7 +45,7 @@ public class RenderPattern {
 		}
 	}
 
-	private Point getLocalPoint(Shape object, Point point) {
+	public Point getLocalPoint(Shape object, Point point) {
 		Point result = null;
 		try {
 			result = Matrix.matrix2Point(Matrix.multiply(Matrix.getInverseMatrix(object.getTransform()), Matrix.tuple2Matrix(point)));

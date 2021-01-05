@@ -30,7 +30,7 @@ public class Material {
 		Color color = null;
 		
 		if (material.getPattern() == null) color = material.getColor();			
-		else color = material.getPattern().getStripeAtObject(object, point);
+		else color = material.getPattern().getPatternAtShape(object, point);
 		
 		Color effectiveColor = Color.schurProduct(color, light.getIntensity());
 		Vector lightVector = Vector.normalize(light.getPosition().subtract(point));

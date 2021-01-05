@@ -26,6 +26,10 @@ public class Color extends Tuple {
 		return new Color(this.getRed() + other.getRed(), this.getGreen() + other.getGreen(), this.getBlue() + other.getBlue());
 	}
 	
+	public Color subtract(Color other) {
+		return new Color(this.getX() - other.getX(), this.getY() - other.getY(), this.getZ() - other.getZ());
+	}
+	
 	public void setBlack() {
 		this.setX(0);
 		this.setY(0);
