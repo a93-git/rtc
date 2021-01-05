@@ -23,7 +23,6 @@ public class StripePattern extends RenderPattern {
 	}
 	
 	private Color getPatternAt(RenderPattern pattern, Point point) {
-		System.out.println("Wrong function called");
 		if (Math.floor(point.getX()) % 2 == 0) return this.getFirstColor();
 		else return this.getSecondColor();
 	}
