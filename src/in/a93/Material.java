@@ -6,6 +6,7 @@ public class Material {
 	private float diffuse;
 	private float specular;
 	private float shininess;
+	private RenderPattern pattern = null;
 	
 	private static final float DELTA = 0.0001f;
 	
@@ -24,75 +25,14 @@ public class Material {
 		this.specular = specular;
 		this.shininess = shininess;
 	}
-
-	@Override
-	public boolean equals(Object other) {
-		if (other == null) return false;
-		if (this == other) return true;
-		if (getClass() != other.getClass()) return false;
-		
-		Material otherMaterial = (Material) other;
-		return this.getColor().equals(otherMaterial.getColor())
-				&& Math.abs(this.getAmbient() - otherMaterial.getAmbient()) < DELTA
-				&& Math.abs(this.getDiffuse() - otherMaterial.getDiffuse()) < DELTA
-				&& Math.abs(this.getSpecular()- otherMaterial.getSpecular()) < DELTA
-				&& Math.abs(this.getShininess() - otherMaterial.getShininess()) < DELTA;
-	}
-	@Override
-	public String toString() {
-		StringBuilder s = new StringBuilder();
-		
-		s.append("Color: " + this.getColor());
-		s.append("\nAmbient: " + this.getAmbient());
-		s.append("\nDiffuse: " + this.getDiffuse());
-		s.append("\nSpecular: " + this.getSpecular());
-		s.append("\nShininess: " + this.getShininess());
-		
-		return s.toString();
-	}
 	
-	public Color getColor() {
-		return color;
-	}
-
-	public void setColor(Color color) {
-		this.color = color;
-	}
-
-	public float getAmbient() {
-		return ambient;
-	}
-
-	public void setAmbient(float ambient) {
-		this.ambient = ambient;
-	}
-
-	public float getDiffuse() {
-		return diffuse;
-	}
-
-	public void setDiffuse(float diffuse) {
-		this.diffuse = diffuse;
-	}
-
-	public float getSpecular() {
-		return specular;
-	}
-
-	public void setSpecular(float specular) {
-		this.specular = specular;
-	}
-
-	public float getShininess() {
-		return shininess;
-	}
-
-	public void setShininess(float shininess) {
-		this.shininess = shininess;
-	}
-	
-	public static Color getLighting(Material material, Light light, Point point, Vector eyeVector, Vector normalVector, boolean inShadow) {
-		Color effectiveColor = Color.schurProduct(material.getColor(), light.getIntensity());
+	public static Color getLighting(Material material, Light light, Point point, Vector eyeVector, Vector normalVector, boolean inShadow, Shape object) {
+		Color color = null;
+		
+		if (material.getPattern() == null) color = material.getColor();			
+		else color = material.getPattern().getStripeAtObject(object, point);
+		
+		Color effectiveColor = Color.schurProduct(color, light.getIntensity());
 		Vector lightVector = Vector.normalize(light.getPosition().subtract(point));
 		Color ambientColor = effectiveColor.scalarMultiply(material.getAmbient());
 
@@ -126,8 +66,78 @@ public class Material {
 	
 	
 	
+	@Override
+	public boolean equals(Object other) {
+		if (other == null) return false;
+		if (this == other) return true;
+		if (getClass() != other.getClass()) return false;
+		
+		Material otherMaterial = (Material) other;
+		return this.getColor().equals(otherMaterial.getColor())
+				&& Math.abs(this.getAmbient() - otherMaterial.getAmbient()) < DELTA
+				&& Math.abs(this.getDiffuse() - otherMaterial.getDiffuse()) < DELTA
+				&& Math.abs(this.getSpecular()- otherMaterial.getSpecular()) < DELTA
+				&& Math.abs(this.getShininess() - otherMaterial.getShininess()) < DELTA;
+	}
+	@Override
+	public String toString() {
+		StringBuilder s = new StringBuilder();
+		
+		s.append("Color: " + this.getColor());
+		s.append("\nAmbient: " + this.getAmbient());
+		s.append("\nDiffuse: " + this.getDiffuse());
+		s.append("\nSpecular: " + this.getSpecular());
+		s.append("\nShininess: " + this.getShininess());
+		
+		return s.toString();
+	}
+
+	/*
+	 * Getters and setters
+	 */
 	
+	public Color getColor() {
+		return color;
+	}
 	
+	public void setColor(Color color) {
+		this.color = color;
+	}
+	
+	public float getAmbient() {
+		return ambient;
+	}
+	
+	public void setAmbient(float ambient) {
+		this.ambient = ambient;
+	}
+	
+	public float getDiffuse() {
+		return diffuse;
+	}
+	
+	public void setDiffuse(float diffuse) {
+		this.diffuse = diffuse;
+	}
+	
+	public float getSpecular() {
+		return specular;
+	}
+	
+	public void setSpecular(float specular) {
+		this.specular = specular;
+	}
+	
+	public float getShininess() {
+		return shininess;
+	}
+	
+	public void setShininess(float shininess) {
+		this.shininess = shininess;
+	}
+	
+	public void setPattern(RenderPattern pattern) { this.pattern = pattern; }
+	public RenderPattern getPattern() { return this.pattern; }
 	
 	
 	

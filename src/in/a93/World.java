@@ -78,7 +78,9 @@ public class World {
 						light, 
 						comp.getOverPoint(), 
 						comp.getEyeVector(), 
-						comp.getNormalVector(), inShade
+						comp.getNormalVector(), 
+						inShade, 
+						comp.getObject()
 						)
 					);
 		}

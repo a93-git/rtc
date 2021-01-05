@@ -41,35 +41,35 @@ public class MaterialTest {
 		Vector nv = new Vector(0, 0, -1);
 		Light light = new Light(new Point(0, 0, -10), new Color(1, 1, 1));
 		
-		Color result = Material.getLighting(material, light, position, ev, nv, false);
+		Color result = Material.getLighting(material, light, position, ev, nv, false, null);
 		System.out.println(result);
 		
 		Vector ev2 = new Vector(0, (float) Math.sqrt(2) / 2, -1 * (float) Math.sqrt(2) / 2);
 		Vector nv2 = new Vector(0, 0, -1);
 		Light light2 = new Light(new Point(0, 0, -10), new Color(1, 1, 1));
 		
-		Color result2 = Material.getLighting(material, light2, position, ev2, nv2, false);
+		Color result2 = Material.getLighting(material, light2, position, ev2, nv2, false, null);
 		System.out.println(result2);
 
 		Vector ev3 = new Vector(0, 0, -1);
 		Vector nv3 = new Vector(0, 0, -1);
 		Light light3 = new Light(new Point(0, 10, -10), new Color(1, 1, 1));
 		
-		Color result3 = Material.getLighting(material, light3, position, ev3, nv3, false);
+		Color result3 = Material.getLighting(material, light3, position, ev3, nv3, false, null);
 		System.out.println(result3);
 
 		Vector ev4 = new Vector(0, -1 * (float) Math.sqrt(2) / 2, -1 * (float) Math.sqrt(2) / 2);
 		Vector nv4 = new Vector(0, 0, -1);
 		Light light4 = new Light(new Point(0, 10, -10), new Color(1, 1, 1));
 		
-		Color result4 = Material.getLighting(material, light4, position, ev4, nv4, false);
+		Color result4 = Material.getLighting(material, light4, position, ev4, nv4, false, null);
 		System.out.println(result4);
 
 		Vector ev5 = new Vector(0, 0, -1);
 		Vector nv5 = new Vector(0, 0, -1);
 		Light light5 = new Light(new Point(0, 0, 10), new Color(1, 1, 1));
 		
-		Color result5 = Material.getLighting(material, light5, position, ev5, nv5, false);
+		Color result5 = Material.getLighting(material, light5, position, ev5, nv5, false, null);
 		System.out.println(result5);
 	}
 	
@@ -81,7 +81,7 @@ public class MaterialTest {
 		Vector nv = new Vector(0, 0, -1);
 		Light light = new Light(new Point(0, 0, -10), new Color(1, 1, 1));
 		
-		Color result = Material.getLighting(material, light, position, ev, nv, true);
+		Color result = Material.getLighting(material, light, position, ev, nv, true, null);
 		System.out.println(result);
 		
 	}
