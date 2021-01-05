@@ -14,4 +14,4 @@ Java implementation of the ray tracer described in <a href="https://learning.ore
 ![spheres_on_plane](https://github.com/a93-git/rtc/blob/master/spheres_on_plane.jpg)
 
 ## Chapter 10 - Patterns
-![patterns])https://github.com/a93-git/rtc/blob/master/images/patterns.jpg)
+![patterns](https://github.com/a93-git/rtc/blob/master/images/patterns.jpg)
