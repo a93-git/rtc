@@ -20,9 +20,12 @@ public class RingPatternTest {
 		Sphere s = new Sphere();
 		
 		RingPattern pattern = new RingPattern(new Color(0, 1, 0), new Color(0, 0, 1));
-		pattern.setTransform(pattern.getTransform().scale(0.5f, 0.5f, 0.5f));
-		p.getMaterial().setPattern(new RingPattern(new Color(1, 0, 0), new Color(0, 0, 1)));
-		p2.getMaterial().setPattern(new RingPattern(new Color(1, 0, 0), new Color(0, 1, 0)));
+//		pattern.setTransform(pattern.getTransform().scale(0.15f, 0.15f, 0.5f));
+//		p.getMaterial().setPattern(new RingPattern(new Color(1, 0, 0), new Color(0, 0, 1)));
+//		p2.getMaterial().setPattern(new RingPattern(new Color(1, 0, 0), new Color(0, 1, 0)));
+
+		p.getMaterial().setPattern(pattern);
+		p2.getMaterial().setPattern(pattern);
 		s.getMaterial().setPattern(pattern);
 		
 		p2.setTransform(p2.getTransform().rotateX((float) Math.PI / 2).translate(0, 0, 5));

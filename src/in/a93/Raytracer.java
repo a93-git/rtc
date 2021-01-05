@@ -1,11 +1,9 @@
 package in.a93;
 
-//import in.a93.Demos.SpheresOnPlane;
-//import in.a93.Demos.MultipleSpheres;
-import in.a93.Tests.CheckerPatternTest;
+import in.a93.Demos.PatternsDemo;
 
 public class Raytracer {
 	public static void main(String[] args) {
-		CheckerPatternTest.test1();
+		PatternsDemo.drawWorld();
 	}
 }

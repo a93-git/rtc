@@ -19,7 +19,6 @@ public class GradientPattern extends RenderPattern {
 	}
 
 	private Color getPatternAt(RenderPattern pattern, Point objectToPatternPoint) {
-		System.out.println("Correct function called");
 		Color colorDiff = this.getSecondColor().subtract((this.getFirstColor()));
 		float xDiff = objectToPatternPoint.getX() - (float) Math.floor(objectToPatternPoint.getX());
 		Color c = colorDiff.scalarMultiply(xDiff);

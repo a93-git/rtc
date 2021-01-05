@@ -19,7 +19,7 @@ public class RingPattern extends RenderPattern {
 	}
 	
 	private Color getPatternAt(RenderPattern pattern, Point objectToPatternPoint) {
-		float xy = (float) Math.pow(objectToPatternPoint.getX(), 2) + (float) Math.pow(objectToPatternPoint.getX(), 2);
+		float xy = (float) Math.pow(objectToPatternPoint.getX(), 2) + (float) Math.pow(objectToPatternPoint.getZ(), 2);
 		float xySqrt = (float) Math.sqrt(xy);
 		
 		if (Math.floor(xySqrt) % 2 == 0) return this.getFirstColor();
