@@ -11,13 +11,14 @@ public class IntersectionPreComputedValue {
 	
 	// Prevents acne in the renders
 	private static float DELTA = 0.0015f;
+//	private static float DELTA = 100;
 	
 	public IntersectionPreComputedValue(Intersection intersection, Ray ray) {
 		this.intersectionT = intersection.getT();
 		this.object = intersection.getObject();
 		this.point = Ray.getPosition(ray, intersection.getT());
 		this.eyeVector = ray.getDirection().scalarMultiply(-1);
-		Vector _tempNormalVector = Sphere.normalAt(intersection.getObject(), this.point);
+		Vector _tempNormalVector = intersection.getObject().normalAt(this.point);
 		
 		if (Vector.dot(_tempNormalVector, eyeVector) < 0) {
 			this.inside = true;
@@ -28,6 +29,7 @@ public class IntersectionPreComputedValue {
 		}
 		
 		this.overPoint = this.point.add(this.normalVector.scalarMultiply(DELTA));
+//		System.out.printf("point: %s\toverPoint: %s\n", this.point, this.overPoint);
 	}
 
 	public Point getOverPoint() {

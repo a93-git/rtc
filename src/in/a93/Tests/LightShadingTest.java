@@ -9,10 +9,10 @@ public class LightShadingTest {
 	
 	public static void sphereNormalTest() {
 		Sphere sphere = new Sphere();
-		Vector normal = Sphere.normalAt(sphere, new Point(1, 0, 0));
-		Vector normal2 = Sphere.normalAt(sphere, new Point(0, 1, 0));
-		Vector normal3 = Sphere.normalAt(sphere, new Point(0, 0, 1));
-		Vector normal4 = Sphere.normalAt(sphere, new Point((float) Math.sqrt(3)/3, (float) Math.sqrt(3)/3, (float) Math.sqrt(3)/3));
+		Vector normal = sphere.normalAt(new Point(1, 0, 0));
+		Vector normal2 = sphere.normalAt(new Point(0, 1, 0));
+		Vector normal3 = sphere.normalAt(new Point(0, 0, 1));
+		Vector normal4 = sphere.normalAt(new Point((float) Math.sqrt(3)/3, (float) Math.sqrt(3)/3, (float) Math.sqrt(3)/3));
 	
 		System.out.println(normal);
 		System.out.println(normal2);
@@ -22,7 +22,7 @@ public class LightShadingTest {
 		System.out.println(normal4.equals(Vector.normalize(normal4)));
 	
 		sphere.setTransform(Matrix.translation(0, 1, 0));
-		Vector normal5 = Sphere.normalAt(sphere, new Point(0, 1.70711f, -0.70711f));
+		Vector normal5 = sphere.normalAt(new Point(0, 1.70711f, -0.70711f));
 		System.out.println(normal5);
 		
 		Sphere sphere2 = new Sphere();
@@ -36,7 +36,7 @@ public class LightShadingTest {
 		Point normalPoint = new Point(0, (float) Math.sqrt(2)/2, (float) (-1 * Math.sqrt(2)/2));
 		
 		
-		Vector normal6 = Sphere.normalAt(sphere2, normalPoint);
+		Vector normal6 = sphere2.normalAt(normalPoint);
 		
 		System.out.println(normal6);
 		

@@ -39,7 +39,7 @@ public class IntersectionTest {
 		Sphere s = new Sphere();
 		
 		System.out.println("Sphere UUID is: " + s.getUuid());
-		Intersection[] xs = Sphere.intersect(s, ray);
+		Intersection[] xs = s.intersect(ray);
 		for (Intersection i : xs) {
 			System.out.println(i.getT() + ", " + i.getObject().getUuid());
 		}

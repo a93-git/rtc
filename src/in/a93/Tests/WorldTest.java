@@ -45,7 +45,7 @@ public class WorldTest {
 		World w = new World();
 		Ray ray = new Ray(new Point(0, 0, -5), new Vector(0, 0, 1));
 		
-		Sphere shape = w.getObjects().get(0);
+		Shape shape = w.getObjects().get(0);
 		Intersection i = new Intersection(4, shape);
 		IntersectionPreComputedValue comp = new IntersectionPreComputedValue(i, ray);
 		
@@ -60,7 +60,7 @@ public class WorldTest {
 		
 		Ray ray = new Ray(new Point(0, 0, 0), new Vector(0, 0, 1));
 		
-		Sphere shape = w.getObjects().get(1);
+		Sphere shape = (Sphere) w.getObjects().get(1);
 		Intersection i = new Intersection(0.5f, shape);
 		IntersectionPreComputedValue comp = new IntersectionPreComputedValue(i, ray);
 		

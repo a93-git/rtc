@@ -60,7 +60,7 @@ public class MultipleSpheres {
 		
 		world.setLight(0, new Light(new Point(-10, 10, -10), new Color(1, 1, 1)));
 		
-		Camera camera = new Camera(720, 480, (float) Math.PI / 3);
+		Camera camera = new Camera(100, 50, (float) Math.PI / 3);
 		camera.setTransform(Matrix.multiply(camera.getTransform(), Matrix.getViewTransform(new Point(0, 1.5f, -5), new Point(0, 1, 0), new Vector(0, 1, 0))));
 		
 		Canvas canvas = camera.render(world);

@@ -3,7 +3,6 @@ package in.a93.Demos;
 import in.a93.Canvas;
 import in.a93.Color;
 import in.a93.Intersection;
-import in.a93.Matrix;
 import in.a93.Sphere;
 import in.a93.Point;
 import in.a93.Vector;
@@ -15,8 +14,8 @@ import in.a93.Material;
 public class SphereSilhouette {
 	
 	public static void drawSphere() {
-		int canvasPixelsX = 500;
-		int canvasPixelsY = 500;
+		int canvasPixelsX = 100;
+		int canvasPixelsY = 100;
 		Canvas canvas = new Canvas(canvasPixelsX, canvasPixelsY);
 		Color color = null;
 		Sphere sphere = new Sphere();
@@ -36,7 +35,7 @@ public class SphereSilhouette {
 //		sphere.setTransform(Matrix.shearing(0.01f, 0, 0.11f, 0, 0, 0));
 //		sphere.setTransform(Matrix.scaling(2f,  2f,  2f));
 //		sphere.getMaterial().setColor(new Color(1.0f, 0, 0));
-		sphere.getTransform().scale(0.25f, 0.5f, 0.75f);
+//		sphere.getTransform().scale(0.25f, 0.5f, 0.75f);
 		Light light = new Light(new Point(-10, 10, -10), new Color(1, 1, 1));
 //		int count = 0;
 		for (int i = 0; i < canvasPixelsX; i++) {
@@ -50,7 +49,7 @@ public class SphereSilhouette {
 				
 				Ray ray = new Ray(rayOrigin, Vector.normalize(position.subtract(rayOrigin)));
 				
-				Intersection[] xs = Sphere.intersect(sphere, ray);
+				Intersection[] xs = sphere.intersect(ray);
 				
 				if (xs == null) {
 					continue;
@@ -58,7 +57,7 @@ public class SphereSilhouette {
 					Intersection hit = Intersection.getHit(xs); 
 					if (!(hit == null)) {
 						Point point = Ray.getPosition(ray, hit.getT());
-						Vector normalVector = Sphere.normalAt(sphere, point);
+						Vector normalVector = sphere.normalAt(point);
 						Vector eyeVector = ray.getDirection().scalarMultiply(-1);
 						color = Material.getLighting(hit.getObject().getMaterial(), light, point, eyeVector, normalVector, false);
 						canvas.setColorAt(i, j, color);

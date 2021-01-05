@@ -46,7 +46,7 @@ public class RayTest {
 		Ray ray = new Ray(new Point(0, 0, -5), new Vector(0, 0, 1));
 		Sphere s = new Sphere();
 		
-		Intersection[] xs = Sphere.intersect(s, ray);
+		Intersection[] xs = s.intersect(ray);
 		
 		if (xs == null) {
 			System.out.println("No intersection");
@@ -61,7 +61,7 @@ public class RayTest {
 		Ray ray = new Ray(new Point(0, 1, -5), new Vector(0, 0, 1));
 		Sphere s = new Sphere();
 		
-		Intersection[] xs = Sphere.intersect(s, ray);
+		Intersection[] xs = s.intersect(ray);
 		
 		if (xs == null) {
 			System.out.println("No intersection");
@@ -76,7 +76,7 @@ public class RayTest {
 		Ray ray = new Ray(new Point(0, 2, -5), new Vector(0, 0, 1));
 		Sphere s = new Sphere();
 		
-		Intersection[] xs = Sphere.intersect(s, ray);
+		Intersection[] xs = s.intersect(ray);
 		
 		if (xs == null) {
 			System.out.println("No intersection");
@@ -91,7 +91,7 @@ public class RayTest {
 		Ray ray = new Ray(new Point(0, 0, 0), new Vector(0, 0, 1));
 		Sphere s = new Sphere();
 		
-		Intersection[] xs = Sphere.intersect(s, ray);
+		Intersection[] xs = s.intersect(ray);
 		
 		if (xs == null) {
 			System.out.println("No intersection");
@@ -106,7 +106,7 @@ public class RayTest {
 		Ray ray = new Ray(new Point(0, 0, 5), new Vector(0, 0, 1));
 		Sphere s = new Sphere();
 		
-		Intersection[] xs = Sphere.intersect(s, ray);
+		Intersection[] xs = s.intersect(ray);
 		
 		if (xs == null) {
 			System.out.println("No intersection");
@@ -150,7 +150,7 @@ public class RayTest {
 		Sphere s = new Sphere();
 		s.setTransform(Matrix.scaling(2, 2, 2));
 		
-		Intersection[] xs = Sphere.intersect(s, ray);
+		Intersection[] xs = s.intersect(ray);
 		
 		System.out.println("Result count is: " + xs.length);
 		
@@ -162,7 +162,7 @@ public class RayTest {
 		
 		Sphere s2 = new Sphere();
 		s2.setTransform(Matrix.scaling(5,  0,  0));
-		Intersection[] xs2 = Sphere.intersect(s2, ray);
+		Intersection[] xs2 = s2.intersect(ray);
 		
 		if (!(xs2 == null)) {
 			for (Intersection i : xs) {
