@@ -49,7 +49,7 @@ public class WorldTest {
 		Intersection i = new Intersection(4, shape);
 		IntersectionPreComputedValue comp = new IntersectionPreComputedValue(i, ray);
 		
-		Color c = World.getShadeHit(w, comp);
+		Color c = World.getShadeHit(w, comp, 0);
 		System.out.println(c);
 		
 	}
@@ -64,7 +64,7 @@ public class WorldTest {
 		Intersection i = new Intersection(0.5f, shape);
 		IntersectionPreComputedValue comp = new IntersectionPreComputedValue(i, ray);
 		
-		Color c = World.getShadeHit(w, comp);
+		Color c = World.getShadeHit(w, comp, 0);
 		System.out.println(c);
 		
 	}
@@ -72,13 +72,13 @@ public class WorldTest {
 	public static void colorAtWorld() {
 		World world = new World();
 		Ray ray = new Ray(new Point(0, 0, -5), new Vector(0, 1, 0));
-		Color c = World.getColorAt(world, ray);
+		Color c = World.getColorAt(world, ray, 4);
 		
 		System.out.println(c);
 
 		Ray ray2 = new Ray(new Point(0, 0, -5), new Vector(0, 0, 1));
 
-		Color c2 = World.getColorAt(world, ray2);
+		Color c2 = World.getColorAt(world, ray2, 4);
 		
 		System.out.println(c2);
 
@@ -86,7 +86,7 @@ public class WorldTest {
 		world.getObjects().get(1).getMaterial().setAmbient(1);
 		
 		Ray ray3 = new Ray(new Point(0, 0, 0.75f), new Vector(0, 0, -1));
-		Color c3 = World.getColorAt(world, ray3);
+		Color c3 = World.getColorAt(world, ray3, 4);
 		
 		System.out.println("Computed color is: " + c3);
 		System.out.println("Color of inner sphere is: " + world.getObjects().get(1).getMaterial().getColor());
@@ -136,7 +136,7 @@ public class WorldTest {
 		Intersection i = new Intersection(4, w.getObjects().get(1));
 		
 		IntersectionPreComputedValue comps = new IntersectionPreComputedValue(i, ray);
-		Color c = World.getShadeHit(w, comps);
+		Color c = World.getShadeHit(w, comps, 0);
 		System.out.println(c);
 	}
 	

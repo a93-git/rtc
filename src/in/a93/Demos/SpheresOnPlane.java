@@ -23,7 +23,7 @@ public class SpheresOnPlane {
 		camera.setTransform(Matrix.multiply(camera.getTransform(), Matrix.getViewTransform(new Point(0, 1.8f, -5), new Point(0, 1, 0), new Vector(0, 1, 0))));
 		camera.setTransform(camera.getTransform().rotateX((float) Math.PI / -12)); // shows the ceiling
 		
-		Canvas canvas = camera.render(world);
+		Canvas canvas = camera.render(world, 0);
 		
 		String ppmData = Canvas.canvasToPpm(canvas);
 		Save.saveToDiskAsText(absolutePath, ppmData);

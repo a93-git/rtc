@@ -80,7 +80,7 @@ public class PatternsDemo {
 		camera.setTransform(Matrix.multiply(camera.getTransform(), Matrix.getViewTransform(new Point(0, 1.8f, -5), new Point(0, 1, 0), new Vector(0, 1, 0))));
 		camera.setTransform(camera.getTransform().rotateX((float) Math.PI / -12).translate(0, 0, -5));
 		
-		Canvas canvas = camera.render(w);
+		Canvas canvas = camera.render(w, 0);
 		String ppmData = Canvas.canvasToPpm(canvas);
 		
 		Save.saveToDiskAsText("E:\\patterns_demo.ppm", ppmData);

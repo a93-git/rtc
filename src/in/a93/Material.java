@@ -7,6 +7,7 @@ public class Material {
 	private float specular;
 	private float shininess;
 	private RenderPattern pattern = null;
+	private float reflective;
 	
 	private static final float DELTA = 0.0001f;
 	
@@ -16,6 +17,7 @@ public class Material {
 		this.diffuse = 0.9f;
 		this.specular = 0.5f;
 		this.shininess = 200f;
+		this.reflective = 0.0f;
 	}
 
 	public Material(Color color, float ambient, float diffuse, float specular, float shininess) {
@@ -88,6 +90,7 @@ public class Material {
 		s.append("\nDiffuse: " + this.getDiffuse());
 		s.append("\nSpecular: " + this.getSpecular());
 		s.append("\nShininess: " + this.getShininess());
+		s.append("\nReflective: " + this.getReflective());
 		
 		return s.toString();
 	}
@@ -136,6 +139,14 @@ public class Material {
 		this.shininess = shininess;
 	}
 	
+	public float getReflective() {
+		return reflective;
+	}
+
+	public void setReflective(float reflective) {
+		this.reflective = reflective;
+	}
+
 	public void setPattern(RenderPattern pattern) { this.pattern = pattern; }
 	public RenderPattern getPattern() { return this.pattern; }
 	

@@ -58,7 +58,7 @@ public class CameraTest {
 		
 		c.setTransform(Matrix.getViewTransform(from, to, up));
 		
-		Canvas image = c.render(w);
+		Canvas image = c.render(w, 0);
 		
 		System.out.println(image.getColorAt(5, 5));
 	}

@@ -68,7 +68,7 @@ public class PatternTest {
 		
 		Camera camera = new Camera(180, 120, (float) Math.PI / 3);
 		camera.setTransform(Matrix.multiply(camera.getTransform(), Matrix.getViewTransform(new Point(0, 1.8f, -5), new Point(0, 1, 0), new Vector(0, 1, 0))));
-		Canvas canvas = camera.render(w);
+		Canvas canvas = camera.render(w, 0);
 		String ppmData = Canvas.canvasToPpm(canvas);
 		
 		Save.saveToDiskAsText("E:\\pattern1.ppm", ppmData);

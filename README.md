@@ -17,3 +17,6 @@ One image from each chapter is provided below. More in the images directory.
 
 ## Chapter 10 - Patterns
 ![patterns](https://github.com/a93-git/rtc/blob/master/images/patterns_demo2.jpg)
+
+## Chapter 11 - Reflection and Refraction
+![sphere-on-plane](https://github.com/a93-git/rtc/blob/master/images/Spheres_reflection-1.jpg)

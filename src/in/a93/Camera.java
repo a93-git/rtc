@@ -62,13 +62,13 @@ public class Camera {
 		return new Ray(origin, direction);
 	}
 	
-	public Canvas render(World w) {
+	public Canvas render(World w, int recursionDepth) {
 		Canvas image = new Canvas(this.getHsize(), this.getVsize());
 		
 		for (int y = 0; y < this.getVsize(); y++) {
 			for (int x = 0; x < this.getHsize(); x++) {
 				Ray ray = this.rayForPixel(x, y);
-				Color color = World.getColorAt(w, ray);
+				Color color = World.getColorAt(w, ray, recursionDepth);
 				image.setColorAt(x, y, color);
 			}
 		}

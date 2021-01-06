@@ -8,10 +8,10 @@ public class IntersectionPreComputedValue {
 	private Vector normalVector;
 	private boolean inside;
 	private Point overPoint;
+	private Vector reflectVector;
 	
 	// Prevents acne in the renders
 	private static float DELTA = 0.0015f;
-//	private static float DELTA = 100;
 	
 	public IntersectionPreComputedValue(Intersection intersection, Ray ray) {
 		this.intersectionT = intersection.getT();
@@ -29,7 +29,10 @@ public class IntersectionPreComputedValue {
 		}
 		
 		this.overPoint = this.point.add(this.normalVector.scalarMultiply(DELTA));
-//		System.out.printf("point: %s\toverPoint: %s\n", this.point, this.overPoint);
+		
+		// No need to negate the normal here as it has already been done above
+		this.reflectVector = Vector.reflect(ray.getDirection(), this.normalVector);
+		
 	}
 
 	public Point getOverPoint() {
@@ -62,6 +65,14 @@ public class IntersectionPreComputedValue {
 	
 	public boolean getInside() {
 		return this.inside;
+	}
+
+	public Vector getReflectVector() {
+		return reflectVector;
+	}
+
+	public void setReflectVector(Vector reflectVector) {
+		this.reflectVector = reflectVector;
 	}
 	
 }

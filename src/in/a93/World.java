@@ -4,11 +4,29 @@ import java.util.ArrayList;
 
 public class World {
 	private ArrayList<Light> lights = new ArrayList<Light>();;
-	ArrayList<Shape> objects = new ArrayList<Shape>();
+	private ArrayList<Shape> objects = new ArrayList<Shape>();
+	private static final float DELTA = 0.01f;
 	
 	public World() {
 		Light light = new Light(new Point(-10, 10, -10), new Color(1, 1, 1));
 		this.lights.add(light);
+	}
+	
+	public static World getDefaultWorld() {
+		World w = new World();
+		Sphere s = new Sphere();
+		Sphere s2 = new Sphere();
+		
+		s.getMaterial().setColor(new Color(0.8f, 1.0f, 0.6f));
+		s.getMaterial().setDiffuse(0.7f);
+		s.getMaterial().setSpecular(0.2f);		
+
+		s2.setTransform(s2.getTransform().scale(0.5f, 0.5f, 0.5f));
+		
+		w.addObjects(s);
+		w.addObjects(s2);
+		
+		return w;
 	}
 	
 	public ArrayList<Light> getLight() {
@@ -68,7 +86,7 @@ public class World {
 		return result;
 	}
 	
-	public static Color getShadeHit(World world, IntersectionPreComputedValue comp) {
+	public static Color getShadeHit(World world, IntersectionPreComputedValue comp, int recursionDepth) {
 		Color result = new Color(0, 0, 0);
 		// isShadowed() method traverses all the lights in this world to find if the object is in shadow
 		boolean inShade = world.isShadowed(comp.getOverPoint());
@@ -84,10 +102,13 @@ public class World {
 						)
 					);
 		}
-		return result;
+		
+		Color reflectedColor = world.getReflectedColor(comp, recursionDepth);
+		
+		return result.add(reflectedColor);
 	}
 	
-	public static Color getColorAt(World world, Ray ray) {
+	public static Color getColorAt(World world, Ray ray, int recursionDepth) {
 		ArrayList<Intersection> i = World.intersectWorld(world, ray);
 		Intersection[] intersections = new Intersection[i.size()];
 		
@@ -105,7 +126,7 @@ public class World {
 			comps = new IntersectionPreComputedValue(hit, ray);
 		}
 		
-		return World.getShadeHit(world, comps);
+		return World.getShadeHit(world, comps, recursionDepth);
 	}
 	
 	public boolean isShadowed(Point p) {
@@ -134,7 +155,20 @@ public class World {
 		return result;
 	}
 	
-	
+	public Color getReflectedColor(IntersectionPreComputedValue computed, int recursionDepth) {
+		System.out.println("Recursion depth is: " + recursionDepth);
+		if (recursionDepth <= 0) return new Color(0, 0, 0);
+		
+		recursionDepth -= 1;
+		
+		if (computed.getObject().getMaterial().getReflective() - 0 < World.DELTA) return new Color(0, 0, 0);
+		else {
+			Ray reflectRay = new Ray(computed.getOverPoint(), computed.getReflectVector());
+			Color color = World.getColorAt(this, reflectRay, recursionDepth);
+			
+			return color.scalarMultiply(computed.getObject().getMaterial().getReflective());
+		}
+	}
 	
 	
 	

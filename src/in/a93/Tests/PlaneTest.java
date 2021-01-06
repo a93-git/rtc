@@ -73,7 +73,7 @@ public class PlaneTest {
 		
 		Camera c = new Camera(180, 120, (float) Math.PI / 3);
 		c.setTransform(Matrix.multiply(c.getTransform(), Matrix.getViewTransform(new Point(0, 1.5f, -5), new Point(0, 1, 0), new Vector(0, 1, 0))));
-		Canvas canvas = c.render(w);
+		Canvas canvas = c.render(w, 0);
 		
 		String ppmData = Canvas.canvasToPpm(canvas);
 		Save.saveToDiskAsText("E:\\Plane1.ppm", ppmData);
