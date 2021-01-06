@@ -16,4 +16,4 @@ One image from each chapter is provided below. More in the images directory.
 ![spheres_on_plane](https://github.com/a93-git/rtc/blob/master/images/spheres_on_plane.jpg)
 
 ## Chapter 10 - Patterns
-![patterns](https://github.com/a93-git/rtc/blob/master/images/patterns.jpg)
+![patterns](https://github.com/a93-git/rtc/blob/master/images/patterns_demo2.jpg)
