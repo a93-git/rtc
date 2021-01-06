@@ -5,6 +5,7 @@ import in.a93.Canvas;
 import in.a93.CheckerPattern;
 import in.a93.Color;
 import in.a93.GradientPattern;
+import in.a93.Light;
 import in.a93.Matrix;
 import in.a93.Plane;
 import in.a93.Point;
@@ -26,6 +27,7 @@ public class PatternsDemo {
 		Sphere s = new Sphere();
 		Sphere s2 = new Sphere();
 		Sphere s3 = new Sphere();
+		Light l = new Light(new Point(8, 0, -4), new Color(1, 1, 1));
 		
 		RingPattern ringPattern = new RingPattern(new Color(0, 0.1f, 0), new Color(0.5f, 0.4f, 0.1f));
 		GradientPattern gradientPattern = new GradientPattern(new Color(0.5f, 0.1f, 0), new Color(0.4f, 0.2f, 0.3f));
@@ -62,6 +64,8 @@ public class PatternsDemo {
 		s3.setTransform(s2.getTransform().rotateZ((float) Math.PI / 12).translate(2, 0, 0));
 		s2.getMaterial().setPattern(checkerPattern);
 		
+		l.setPosition(new Point(8, 0, -4));
+		
 		w.addObjects(p);
 		w.addObjects(p2);
 		w.addObjects(p3);
@@ -70,6 +74,7 @@ public class PatternsDemo {
 		w.addObjects(s);
 		w.addObjects(s2);
 		w.addObjects(s3);
+		w.addLight(l);
 		
 		Camera camera = new Camera(720, 480, (float) Math.PI / 1.75f);
 		camera.setTransform(Matrix.multiply(camera.getTransform(), Matrix.getViewTransform(new Point(0, 1.8f, -5), new Point(0, 1, 0), new Vector(0, 1, 0))));

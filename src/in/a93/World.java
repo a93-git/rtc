@@ -111,6 +111,7 @@ public class World {
 	public boolean isShadowed(Point p) {
 		boolean result = false;
 
+
 		Vector v = this.getLight().get(0).getPosition().subtract(p);
 		float distance = v.magnitude();
 		Vector direction = Vector.normalize(v);
@@ -128,6 +129,7 @@ public class World {
 		if (!(hit == null) && (hit.getT() < distance)) {
 			result = true;
 		}
+		
 		
 		return result;
 	}
