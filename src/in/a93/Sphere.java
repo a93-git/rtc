@@ -95,4 +95,13 @@ public class Sphere extends Shape {
 		
 		return objectNormal;
 	}
+	
+	public static Sphere getGlassSphere() {
+		Sphere s = new Sphere();
+		s.getMaterial().setRefractiveIndex(1.5f);
+		s.getMaterial().setTransparency(1.0f);
+		
+		return s;
+		
+	}
 }

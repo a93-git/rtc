@@ -21,7 +21,6 @@ public class Matrix {
 		this.matrixRows = rows;
 		this.matrixColumns = columns;
 		this.matrix = new float[matrixRows][matrixColumns];
-
 	}
 	
 	public float[][] getArray() { return this.matrix;	}

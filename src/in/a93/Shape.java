@@ -6,6 +6,8 @@ public abstract class Shape {
 	private Matrix transform;
 	private Material material;
 	
+//	private static float DELTA = 0.00001f;
+	
 	public Shape() {
 		this.transform = Matrix.getIdentityMatrix(4, 4);
 		this.material = new Material();
@@ -41,6 +43,26 @@ public abstract class Shape {
 		return localPoint;
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (getClass() != obj.getClass()) return false;
+		
+		Shape other = (Shape) obj;
+		
+		return this.getTransform().equals(other.getTransform())
+			   && this.getMaterial().equals(other.getMaterial());
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder s = new StringBuilder();
+		s.append("Transform: \n" + this.getTransform());
+		s.append("Material: \n" + this.getMaterial());
+		
+		return this.toString();
+	}
 	/*
 	 * Getters and setters
 	 */

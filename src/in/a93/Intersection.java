@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class Intersection implements Comparable<Intersection> {
 	private float t;
 	private Shape object;
-//	private static float DELTA = 0.00001f;
+	private static float DELTA = 0.0001f;
 	
 	public Intersection(float t, Shape object) {
 		this.t = t;
@@ -34,15 +34,26 @@ public class Intersection implements Comparable<Intersection> {
 	@Override
 	public String toString() {
 		StringBuilder s = new StringBuilder();		
-		s.append(t);		
+		s.append(this.getT());		
+		s.append("\n" + this.getObject());		
 		return s.toString();
 	}
 
 	@Override
 	public int compareTo(Intersection o) { return Double.compare(this.getT(), o.getT()); }
 	
-	public static IntersectionPreComputedValue preComputedValue(Intersection intersection, Ray ray ) {
-		IntersectionPreComputedValue value = new IntersectionPreComputedValue(intersection, ray);
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) return false;
+		if (this == obj) return true;
+		if (getClass() != obj.getClass()) return false;
+		
+		Intersection other = (Intersection) obj; 
+		return ((this.getT() - other.getT()) < Intersection.DELTA && this.getObject().equals(other.getObject()));
+	}
+	
+	public static IntersectionCompute preComputedValue(Intersection intersection, Ray ray ) {
+		IntersectionCompute value = new IntersectionCompute(intersection, ray, null);
 		return value;
 	}
 }

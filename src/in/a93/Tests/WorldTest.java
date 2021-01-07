@@ -17,7 +17,7 @@ public class WorldTest {
 		Ray ray = new Ray(new Point(0, 0, -5), new Vector(0, 0, 1));
 		Sphere sphere = new Sphere();
 		Intersection intersection = new Intersection(4, sphere);
-		IntersectionPreComputedValue comp = new IntersectionPreComputedValue(intersection, ray);
+		IntersectionCompute comp = new IntersectionCompute(intersection, ray, null);
 		
 		System.out.println(comp.getIntersectionT());
 		System.out.println(comp.getObject());
@@ -31,7 +31,7 @@ public class WorldTest {
 		Sphere shape = new Sphere();
 		
 		Intersection intersection = new Intersection(1, shape);
-		IntersectionPreComputedValue comp = new IntersectionPreComputedValue(intersection, ray);
+		IntersectionCompute comp = new IntersectionCompute(intersection, ray, null);
 		
 		System.out.println(comp.getIntersectionT());
 		System.out.println(comp.getObject());
@@ -47,7 +47,7 @@ public class WorldTest {
 		
 		Shape shape = w.getObjects().get(0);
 		Intersection i = new Intersection(4, shape);
-		IntersectionPreComputedValue comp = new IntersectionPreComputedValue(i, ray);
+		IntersectionCompute comp = new IntersectionCompute(i, ray, null);
 		
 		Color c = World.getShadeHit(w, comp, 0);
 		System.out.println(c);
@@ -62,7 +62,7 @@ public class WorldTest {
 		
 		Sphere shape = (Sphere) w.getObjects().get(1);
 		Intersection i = new Intersection(0.5f, shape);
-		IntersectionPreComputedValue comp = new IntersectionPreComputedValue(i, ray);
+		IntersectionCompute comp = new IntersectionCompute(i, ray, null);
 		
 		Color c = World.getShadeHit(w, comp, 0);
 		System.out.println(c);
@@ -135,7 +135,7 @@ public class WorldTest {
 		Ray ray = new Ray(new Point(0, 0, 5), new Vector(0, 0, 1));
 		Intersection i = new Intersection(4, w.getObjects().get(1));
 		
-		IntersectionPreComputedValue comps = new IntersectionPreComputedValue(i, ray);
+		IntersectionCompute comps = new IntersectionCompute(i, ray, null);
 		Color c = World.getShadeHit(w, comps, 0);
 		System.out.println(c);
 	}
@@ -154,9 +154,9 @@ public class WorldTest {
 
 		Intersection i = new Intersection(5, sphere);
 		
-		IntersectionPreComputedValue computed = new IntersectionPreComputedValue(i, ray);
+		IntersectionCompute computed = new IntersectionCompute(i, ray, null);
 		
-		System.out.println(computed.getOverPoint().getZ() < IntersectionPreComputedValue.getDELTA());
+		System.out.println(computed.getOverPoint().getZ() < IntersectionCompute.getDELTA());
 		System.out.println(computed.getPoint().getZ() > computed.getOverPoint().getZ());
 		
 	}

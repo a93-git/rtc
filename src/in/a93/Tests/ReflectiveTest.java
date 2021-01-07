@@ -12,7 +12,7 @@ public class ReflectiveTest {
 		Plane p = new Plane();
 		Ray r = new Ray(new Point(0, 1, -1), new Vector(0, -(float) Math.sqrt(2)/2, (float) Math.sqrt(2)/2));
 		Intersection i = new Intersection((float) Math.sqrt(2), p);
-		IntersectionPreComputedValue c = new IntersectionPreComputedValue(i, r);
+		IntersectionCompute c = new IntersectionCompute(i, r, null);
 		
 		System.out.println("Precomputed reflect vector: " + c.getReflectVector());
 	}
@@ -33,7 +33,7 @@ public class ReflectiveTest {
 		
 		Intersection i = new Intersection(1, s2);
 		
-		IntersectionPreComputedValue c = new IntersectionPreComputedValue(i, r);
+		IntersectionCompute c = new IntersectionCompute(i, r, null);
 		Color color = w.getReflectedColor(c, 0);
 		
 		System.out.println("Reflected color is: " + color);
@@ -62,7 +62,7 @@ public class ReflectiveTest {
 		
 		Intersection i = new Intersection((float) Math.sqrt(2), p);
 		
-		IntersectionPreComputedValue c = new IntersectionPreComputedValue(i, r);
+		IntersectionCompute c = new IntersectionCompute(i, r, null);
 		Color color = w.getReflectedColor(c, 0);
 		
 		System.out.println("Reflected color is: " + color);
@@ -80,7 +80,7 @@ public class ReflectiveTest {
 		
 		Intersection i = new Intersection((float) Math.sqrt(2), p);
 
-		IntersectionPreComputedValue c = new IntersectionPreComputedValue(i, r);
+		IntersectionCompute c = new IntersectionCompute(i, r, null);
 		Color color = World.getShadeHit(w, c, 0);
 		
 		System.out.println("Shade color is: " + color);
@@ -126,7 +126,7 @@ public class ReflectiveTest {
 		
 		Intersection i = new Intersection((float) Math.sqrt(2), p);
 
-		IntersectionPreComputedValue c = new IntersectionPreComputedValue(i, r);
+		IntersectionCompute c = new IntersectionCompute(i, r, null);
 		Color color = w.getReflectedColor(c, 0);
 		
 		System.out.println("Reflected color is: " + color);

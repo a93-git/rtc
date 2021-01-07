@@ -12,10 +12,13 @@ public class ReflectionTest {
 		
 		p.getMaterial().setReflective(1);
 		p.getMaterial().setColor(wallColor);
+		p.getMaterial().setPattern(new CheckerPattern(new Color(0.4f, 0.4f, 0.4f), new Color(0, 0, 0)));
 		
-		s.getMaterial().setReflective(0.01f);
-		s.getMaterial().setColor(new Color(1, 0, 0));
-		s.setTransform(s.getTransform().translate(0, 1, 0));
+		s.getMaterial().setReflective(1);
+		s.getMaterial().setSpecular(1);
+		s.getMaterial().setDiffuse(0);
+		s.getMaterial().setColor(new Color(0.8f, 0.01f, 0.1f));
+		s.setTransform(s.getTransform().rotateZ(-(float) Math.PI / 3).translate(0, 1, 0));
 		
 		w.addObjects(p);
 		w.addObjects(s);

@@ -86,7 +86,7 @@ public class World {
 		return result;
 	}
 	
-	public static Color getShadeHit(World world, IntersectionPreComputedValue comp, int recursionDepth) {
+	public static Color getShadeHit(World world, IntersectionCompute comp, int recursionDepth) {
 		Color result = new Color(0, 0, 0);
 		// isShadowed() method traverses all the lights in this world to find if the object is in shadow
 		boolean inShade = world.isShadowed(comp.getOverPoint());
@@ -104,8 +104,8 @@ public class World {
 		}
 		
 		Color reflectedColor = world.getReflectedColor(comp, recursionDepth);
-		
-		return result.add(reflectedColor);
+		Color refractedColor = world.getRefractedColor(comp, recursionDepth);
+		return result.add(reflectedColor).add(refractedColor);
 	}
 	
 	public static Color getColorAt(World world, Ray ray, int recursionDepth) {
@@ -119,11 +119,11 @@ public class World {
 		Intersection hit = Intersection.getHit(intersections);
 		
 		Color result = new Color(0, 0, 0);
-		IntersectionPreComputedValue comps = null;
+		IntersectionCompute comps = null;
 		if (hit == null) {
 			return result;
 		} else {
-			comps = new IntersectionPreComputedValue(hit, ray);
+			comps = new IntersectionCompute(hit, ray, intersections);
 		}
 		
 		return World.getShadeHit(world, comps, recursionDepth);
@@ -155,8 +155,7 @@ public class World {
 		return result;
 	}
 	
-	public Color getReflectedColor(IntersectionPreComputedValue computed, int recursionDepth) {
-		System.out.println("Recursion depth is: " + recursionDepth);
+	public Color getReflectedColor(IntersectionCompute computed, int recursionDepth) {
 		if (recursionDepth <= 0) return new Color(0, 0, 0);
 		
 		recursionDepth -= 1;
@@ -170,7 +169,28 @@ public class World {
 		}
 	}
 	
-	
+	public Color getRefractedColor(IntersectionCompute computed, int recursionDepth) {
+		if (recursionDepth <= 0) return Color.BLACK;
+		else recursionDepth--;
+
+		if (Math.abs(computed.getObject().getMaterial().getTransparency() - 0.0f) < World.DELTA) return Color.BLACK;
+
+		// Total internal reflection
+		float etaRatio = computed.getFirstRI() / computed.getSecondRI();
+		float cosI = Vector.dot(computed.getEyeVector(), computed.getNormalVector());
+		float sin2T = (float) (Math.pow(etaRatio, 2) * (1 - Math.pow(cosI, 2)));
+		
+		// If TIR occurs, return black
+		if (sin2T > 1) return Color.BLACK;
+		
+		float cosT = (float) Math.sqrt(1.0f - sin2T);
+		// Direction of the refracted ray
+		Vector refractedDirection = computed.getNormalVector().scalarMultiply(etaRatio * cosI - cosT).subtract(computed.getEyeVector().scalarMultiply(etaRatio));
+		Ray refractedRay = new Ray(computed.getUnderPoint(), refractedDirection);
+		
+		Color refractedColor = World.getColorAt(this, refractedRay, recursionDepth).scalarMultiply(computed.getObject().getMaterial().getTransparency());
+		return refractedColor;
+	}
 	
 	
 	

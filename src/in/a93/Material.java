@@ -8,6 +8,8 @@ public class Material {
 	private float shininess;
 	private RenderPattern pattern = null;
 	private float reflective;
+	private float transparency;
+	private float refractiveIndex;
 	
 	private static final float DELTA = 0.0001f;
 	
@@ -18,6 +20,9 @@ public class Material {
 		this.specular = 0.5f;
 		this.shininess = 200f;
 		this.reflective = 0.0f;
+		this.transparency = 0.0f;
+		this.refractiveIndex = 1.0f;
+		
 	}
 
 	public Material(Color color, float ambient, float diffuse, float specular, float shininess) {
@@ -79,7 +84,10 @@ public class Material {
 				&& Math.abs(this.getAmbient() - otherMaterial.getAmbient()) < DELTA
 				&& Math.abs(this.getDiffuse() - otherMaterial.getDiffuse()) < DELTA
 				&& Math.abs(this.getSpecular()- otherMaterial.getSpecular()) < DELTA
-				&& Math.abs(this.getShininess() - otherMaterial.getShininess()) < DELTA;
+				&& Math.abs(this.getShininess() - otherMaterial.getShininess()) < DELTA
+				&& Math.abs(this.getReflective() - otherMaterial.getReflective()) < DELTA
+				&& Math.abs(this.getTransparency() - otherMaterial.getTransparency()) < DELTA
+				&& Math.abs(this.getRefractiveIndex() - otherMaterial.getRefractiveIndex()) < DELTA;
 	}
 	@Override
 	public String toString() {
@@ -91,6 +99,8 @@ public class Material {
 		s.append("\nSpecular: " + this.getSpecular());
 		s.append("\nShininess: " + this.getShininess());
 		s.append("\nReflective: " + this.getReflective());
+		s.append("\nRefractive index: " + this.getRefractiveIndex());
+		s.append("\nTransparency: " + this.getTransparency());
 		
 		return s.toString();
 	}
@@ -149,6 +159,22 @@ public class Material {
 
 	public void setPattern(RenderPattern pattern) { this.pattern = pattern; }
 	public RenderPattern getPattern() { return this.pattern; }
+
+	public float getTransparency() {
+		return transparency;
+	}
+
+	public void setTransparency(float transparency) {
+		this.transparency = transparency;
+	}
+
+	public float getRefractiveIndex() {
+		return refractiveIndex;
+	}
+
+	public void setRefractiveIndex(float refractiveIndex) {
+		this.refractiveIndex = refractiveIndex;
+	}
 	
 	
 	
