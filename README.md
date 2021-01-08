@@ -20,3 +20,4 @@ One image from each chapter is provided below. More in the images directory.
 
 ## Chapter 11 - Reflection and Refraction
 ![sphere-on-plane](https://github.com/a93-git/rtc/blob/master/images/Spheres_reflection-1.jpg)
+![sphere-checker-refraction](https://github.com/a93-git/rtc/blob/master/images/refraction.jpg)

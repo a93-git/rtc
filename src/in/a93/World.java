@@ -105,6 +105,12 @@ public class World {
 		
 		Color reflectedColor = world.getReflectedColor(comp, recursionDepth);
 		Color refractedColor = world.getRefractedColor(comp, recursionDepth);
+		
+		Material material = comp.getObject().getMaterial();
+		if (material.getReflective() > 0 && material.getTransparency() > 0) {
+			float reflectance = Intersection.getSchlick(comp);
+			return result.add(reflectedColor.scalarMultiply(reflectance)).add(refractedColor.scalarMultiply(1 - reflectance));
+		}
 		return result.add(reflectedColor).add(refractedColor);
 	}
 	
