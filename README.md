@@ -20,3 +20,6 @@ One image from each chapter is provided below. More in the images directory.
 
 ## Chapter 11 - Reflection and Refraction
 ![ch11-cover](https://github.com/a93-git/rtc/blob/master/images/ch11cover.jpg)
+
+## Chapter 12 - Cubes
+![cube-demo](https://github.com/a93-git/rtc/blob/master/images/cube_demo.jpg)

@@ -41,24 +41,6 @@ public class Plane extends Shape {
 	}
 	
 	public String getUuid() { return this.uuid; }
-
-//	@Override
-//	public Vector normalAt(Point point) {
-//		return new Vector(0, 1, 0);
-//	}
-	
-	
-	
-	
-//	
-//	@Override
-//	public void setTransform(Matrix transform) {
-//		System.out.println("Subclass called");
-//		super.setTransform(transform);
-//	}
-//	
-//	@Override
-//	public Matrix getTransform() { return super.getTransform(); }
 	
 	
 	/*

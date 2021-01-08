@@ -6,10 +6,10 @@ public class Material {
 	private float diffuse;
 	private float specular;
 	private float shininess;
-	private RenderPattern pattern = null;
 	private float reflective;
 	private float transparency;
 	private float refractiveIndex;
+	private RenderPattern pattern = null;
 	
 	private static final float DELTA = 0.0001f;
 	

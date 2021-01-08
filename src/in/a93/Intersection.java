@@ -59,16 +59,11 @@ public class Intersection implements Comparable<Intersection> {
 	
 	public static float getSchlick(IntersectionCompute computed) {
 		float cos = Vector.dot(computed.getEyeVector(), computed.getNormalVector());
-//		System.out.println("Cos: " + cos);
-//		System.out.println("n1: " + computed.getFirstRI());
-//		System.out.println("n2: " + computed.getSecondRI());
 		
 		// TIR only occurs if n1 > n2
 		if (computed.getFirstRI() > computed.getSecondRI()) {
 			float etaRatio = computed.getFirstRI() / computed.getSecondRI();
-//			System.out.println("n: " + etaRatio);
 			float sin2T = (float) (Math.pow(etaRatio, 2) * (1.0 - Math.pow(cos, 2)));
-//			System.out.println("sin2t: " + sin2T);
 			if (sin2T > 1.0f) return 1.0f;
 			
 			float cosT = (float) Math.sqrt(1 - sin2T);
