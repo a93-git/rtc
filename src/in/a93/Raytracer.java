@@ -1,10 +1,10 @@
 package in.a93;
 
-import in.a93.Tests.CylinderTest;
+import in.a93.Demos.*;
 
 public class Raytracer {
 	public static void main(String[] args) {
-		CylinderTest.test10("E:\\cappedSphere.ppm");
-//		CylinderTest.test9();
+		ConeCylinderDemo a = new ConeCylinderDemo();
+		a.drawScene("E:\\coneDemo.ppm");
 	}
 }

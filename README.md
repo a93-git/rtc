@@ -26,3 +26,4 @@ One image from each chapter is provided below. More in the images directory.
 
 ## Chapter 13 - Cylinders 
 ![cylinder-demo](https://github.com/a93-git/rtc/blob/master/images/cylinder_demo.jpg)
+![cone-demo](https://github.com/a93-git/rtc/blob/master/images/cone_demo.jpg)
