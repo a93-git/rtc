@@ -63,6 +63,7 @@ public abstract class Shape {
 		
 		return s.toString();
 	}
+	
 	/*
 	 * Getters and setters
 	 */

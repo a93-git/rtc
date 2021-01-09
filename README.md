@@ -23,3 +23,6 @@ One image from each chapter is provided below. More in the images directory.
 
 ## Chapter 12 - Cubes
 ![cube-demo](https://github.com/a93-git/rtc/blob/master/images/cube_demo.jpg)
+
+## Chapter 13 - Cylinders 
+![cylinder-demo](https://github.com/a93-git/rtc/blob/master/images/cylinder_demo.jpg)
