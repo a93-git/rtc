@@ -61,7 +61,7 @@ public abstract class Shape {
 		s.append("Transform: \n" + this.getTransform());
 		s.append("Material: \n" + this.getMaterial());
 		
-		return this.toString();
+		return s.toString();
 	}
 	/*
 	 * Getters and setters
