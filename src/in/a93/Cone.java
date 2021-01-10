@@ -3,7 +3,7 @@ package in.a93;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import in.a93.Exceptions.MatrixNotInvertibleException;
+//import in.a93.Exceptions.MatrixNotInvertibleException;
 
 public class Cone extends Shape {
 	/*
@@ -94,28 +94,9 @@ public class Cone extends Shape {
 		}
 		return this.arrayListToArray(result);
 	}
-
-	@Override
-	public Vector normalAt(Point point) {
-		Vector worldNormal = null;
-		Matrix invTransposeTransform = null;
-		
-		try {	
-			invTransposeTransform = Matrix.getInverseMatrix(Matrix.transpose(this.getTransform()));
-		} catch (MatrixNotInvertibleException e) {
-			e.printStackTrace();
-			return worldNormal;
-		}
-
-		Point localPoint = super.getLocalPoint(point, invTransposeTransform);
-		Vector localNormal = this.localNormaAt(localPoint);
 	
-		worldNormal = Matrix.matrix2Vector(Matrix.multiply(invTransposeTransform, Matrix.tuple2Matrix(localNormal)));
-		worldNormal.setW(0);
-		return Vector.normalize(worldNormal);
-	}
-
-	private Vector localNormaAt(Point localPoint) {
+	@Override
+	protected Vector localNormalAt(Point localPoint) {
 		float dSquare = (float) (Math.pow(localPoint.getX(), 2) + Math.pow(localPoint.getZ(), 2));
 		
 		// end cap normal
@@ -138,7 +119,7 @@ public class Cone extends Shape {
 			return new Vector(localPoint.getX(), y, localPoint.getZ());
 		}
 	}
-
+	
 	private ArrayList<Intersection> intersectCaps(Ray ray, ArrayList<Intersection> result) {
 		if (!(this.isCapped()) || 
 				(Math.abs(ray.getDirection().getY()) - 0) < Cone.DELTA) {
@@ -174,7 +155,7 @@ public class Cone extends Shape {
 		float x = ray.getOrigin().getX() + (t * ray.getDirection().getX());
 		float z = ray.getOrigin().getZ() + (t * ray.getDirection().getZ());
 		
-		// Recheck this value
+		// Re check this value
 		return ((float) (Math.pow(x, 2) + Math.pow(z, 2)) < Math.pow(yPos, 2)) || 
 				((float) (Math.pow(x, 2) + Math.pow(z, 2))) - Math.pow(yPos, 2) < Cone.DELTA;
 	}
@@ -215,5 +196,4 @@ public class Cone extends Shape {
 	public void setCapped(boolean capped) {
 		this.capped = capped;
 	}
-	
 }

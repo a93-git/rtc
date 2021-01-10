@@ -3,8 +3,6 @@ package in.a93;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import in.a93.Exceptions.MatrixNotInvertibleException;
-
 public class Cylinder extends Shape {
 
 	private static final float DELTA = 0.00001f;
@@ -51,9 +49,6 @@ public class Cylinder extends Shape {
 				t1 = t0;
 				t0 = temp;
 			}
-//			
-//			Intersection i1 = null;
-//			Intersection i2 = null;
 			
 			float y0 = localRay.getOrigin().getY() + (t0 * localRay.getDirection().getY());
 			if (this.getMin() < y0 && y0 < this.getMax()) result.add(new Intersection(t0, this));
@@ -75,26 +70,7 @@ public class Cylinder extends Shape {
 	}
 
 	@Override
-	public Vector normalAt(Point point) {
-		Vector worldNormal = null;
-		Matrix invTransposeTransform = null;
-		
-		try {	
-			invTransposeTransform = Matrix.getInverseMatrix(Matrix.transpose(this.getTransform()));
-		} catch (MatrixNotInvertibleException e) {
-			e.printStackTrace();
-			return worldNormal;
-		}
-
-		Point localPoint = super.getLocalPoint(point, invTransposeTransform);
-		Vector localNormal = this.localNormaAt(localPoint);
-	
-		worldNormal = Matrix.matrix2Vector(Matrix.multiply(invTransposeTransform, Matrix.tuple2Matrix(localNormal)));
-		worldNormal.setW(0);
-		return Vector.normalize(worldNormal);
-	}
-
-	private Vector localNormaAt(Point localPoint) {
+	protected Vector localNormalAt(Point localPoint) {
 		float dSquare = (float) (Math.pow(localPoint.getX(), 2) + Math.pow(localPoint.getZ(), 2));
 		
 		if (dSquare < 1 
@@ -110,6 +86,7 @@ public class Cylinder extends Shape {
 		else
 			return new Vector(localPoint.getX(), 0, localPoint.getZ());
 	}
+	
 
 	private ArrayList<Intersection> intersectCaps(Ray ray, ArrayList<Intersection> result) {
 		if (!(this.isCapped()) || (Math.abs((ray.getDirection().getY()) - 0) < Cylinder.DELTA)) {
@@ -187,5 +164,4 @@ public class Cylinder extends Shape {
 	public void setCapped(boolean capped) {
 		this.capped = capped;
 	}
-	
 }

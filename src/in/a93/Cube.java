@@ -2,7 +2,6 @@ package in.a93;
 
 import java.util.UUID;
 
-import in.a93.Exceptions.MatrixNotInvertibleException;
 
 public class Cube extends Shape {
 	private String uuid;
@@ -57,40 +56,26 @@ public class Cube extends Shape {
 		return result;
 	}
 
-	@Override
-	public Vector normalAt(Point point) {
-		Vector worldNormal = null;
-		Matrix invTransposeTransform = null;
-		
-		try {	
-			invTransposeTransform = Matrix.getInverseMatrix(Matrix.transpose(this.getTransform()));
-		} catch (MatrixNotInvertibleException e) {
-			e.printStackTrace();
-			return worldNormal;
-		}
+//	@Override
+//	public Vector normalAt(Point point) {
+//		Vector worldNormal = null;
+//		Matrix invTransposeTransform = null;
+//		
+//		try {	
+//			invTransposeTransform = Matrix.getInverseMatrix(Matrix.transpose(this.getTransform()));
+//		} catch (MatrixNotInvertibleException e) {
+//			e.printStackTrace();
+//			return worldNormal;
+//		}
+//
+//		Point localPoint = super.getLocalPoint(point, invTransposeTransform);
+//		Vector localNormal = this.localNormaAt(localPoint);
+//	
+//		worldNormal = Matrix.matrix2Vector(Matrix.multiply(invTransposeTransform, Matrix.tuple2Matrix(localNormal)));
+//		worldNormal.setW(0);
+//		return Vector.normalize(worldNormal);
+//	}
 
-		Point localPoint = super.getLocalPoint(point, invTransposeTransform);
-		Vector localNormal = this.localNormaAt(localPoint);
-	
-		worldNormal = Matrix.matrix2Vector(Matrix.multiply(invTransposeTransform, Matrix.tuple2Matrix(localNormal)));
-		worldNormal.setW(0);
-		return Vector.normalize(worldNormal);
-	}
-
-	private Vector localNormaAt(Point localPoint) {
-		float max = Math.max(
-				Math.abs(localPoint.getX()), 
-				Math.max(
-						Math.abs(localPoint.getY()),
-						Math.abs(localPoint.getZ())
-						)
-				);
-		
-		if (max - Math.abs(localPoint.getX()) < Cube.DELTA) return new Vector(localPoint.getX(), 0, 0);
-		else if (max - Math.abs(localPoint.getY()) < Cube.DELTA) return new Vector(0, localPoint.getY(), 0); 
-		return new Vector(0, 0, localPoint.getZ());			
-	}
-	
 	
 	@Override
 	public String getUuid() {
@@ -106,4 +91,20 @@ public class Cube extends Shape {
 	public String toString() {
 		return null;
 	}
+
+	@Override
+	protected Vector localNormalAt(Point localPoint) {
+		float max = Math.max(
+				Math.abs(localPoint.getX()), 
+				Math.max(
+						Math.abs(localPoint.getY()),
+						Math.abs(localPoint.getZ())
+						)
+				);
+		
+		if (max - Math.abs(localPoint.getX()) < Cube.DELTA) return new Vector(localPoint.getX(), 0, 0);
+		else if (max - Math.abs(localPoint.getY()) < Cube.DELTA) return new Vector(0, localPoint.getY(), 0); 
+		return new Vector(0, 0, localPoint.getZ());			
+	}
+
 }

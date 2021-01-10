@@ -67,7 +67,8 @@ public class Plane extends Shape {
 		return Vector.normalize(worldNormal);
 	}
 
-	private Vector localNormalAt(Point localPoint) {
+	@Override
+	protected Vector localNormalAt(Point localPoint) {
 		return new Vector(0, 1, 0);
 	}
 	

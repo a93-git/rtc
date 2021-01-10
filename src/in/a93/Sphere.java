@@ -65,31 +65,7 @@ public class Sphere extends Shape {
 		return result;		
 	}
 
-	/*
-	 * Convert the point from world space to local space
-	 * Calculate the normal
-	 * Transform the point by (the inverse of the transpose) of the transformation matrix of the object
-	 */
-	@Override
-	public Vector normalAt(Point point) {		
-		Vector worldNormal = null;
-		Matrix invTransposeTransform = null;
-		
-		try {	
-			invTransposeTransform = Matrix.getInverseMatrix(Matrix.transpose(this.getTransform()));
-		} catch (MatrixNotInvertibleException e) {
-			e.printStackTrace();
-			return worldNormal;
-		}
-
-		Point localPoint = super.getLocalPoint(point, invTransposeTransform);
-		Vector localNormal = this.localNormalAt(localPoint); 
-		worldNormal = Matrix.matrix2Vector(Matrix.multiply(invTransposeTransform, Matrix.tuple2Matrix(localNormal)));
-		worldNormal.setW(0);
-		return Vector.normalize(worldNormal);
-	}
-
-	private Vector localNormalAt(Point localPoint) {
+	protected Vector localNormalAt(Point localPoint) {
 		Vector worldNormal = null;
 		Vector objectNormal = localPoint.subtract(new Point());
 		

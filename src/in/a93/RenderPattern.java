@@ -37,6 +37,7 @@ public abstract class RenderPattern {
 	 */
 	
 	public Point getPatternPoint(Point worldToObjectPoint) {
+		// Change the point to pattern space
 		try {
 			return Matrix.matrix2Point(Matrix.multiply(Matrix.getInverseMatrix(this.getTransform()), Matrix.tuple2Matrix(worldToObjectPoint)));
 		} catch (MatrixNotInvertibleException e) {
@@ -46,13 +47,16 @@ public abstract class RenderPattern {
 	}
 
 	public Point getLocalPoint(Shape object, Point point) {
-		Point result = null;
-		try {
-			result = Matrix.matrix2Point(Matrix.multiply(Matrix.getInverseMatrix(object.getTransform()), Matrix.tuple2Matrix(point)));
-		} catch (MatrixNotInvertibleException e) {
-			e.printStackTrace();
-		}
-		return result;
+		// change the point to object space
+//		Point result = null;
+//		try {
+//			result = Matrix.matrix2Point(Matrix.multiply(Matrix.getInverseMatrix(object.getTransform()), Matrix.tuple2Matrix(point)));
+//		} catch (MatrixNotInvertibleException e) {
+//			e.printStackTrace();
+//		}
+//		return result;
+		
+		return object.worldToObject(point);
 	}
 	
 	
