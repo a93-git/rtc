@@ -164,4 +164,12 @@ public class Cylinder extends Shape {
 	public void setCapped(boolean capped) {
 		this.capped = capped;
 	}
+
+	@Override
+	public Bounds parentSpaceBounds() {
+		Bounds bounds = new Bounds();
+		bounds.boundsOf(this);
+		return bounds.setTransform(this.getTransform());
+//		return bounds;		
+	}
 }

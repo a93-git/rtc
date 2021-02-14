@@ -109,6 +109,8 @@ public abstract class Shape {
 		return s.toString();
 	}
 	
+	public abstract Bounds parentSpaceBounds();
+
 	/*
 	 * Getters and setters
 	 */

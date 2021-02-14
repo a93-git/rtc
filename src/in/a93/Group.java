@@ -87,4 +87,13 @@ public class Group extends Shape {
 		return null;
 	}
 	
+	@Override
+	public Bounds parentSpaceBounds() {
+		Bounds bounds = new Bounds();
+		for (int i = 0; i < this.getChildren().size(); i++) {
+			bounds.add(this.getChildren().get(i).parentSpaceBounds());
+		}
+		return bounds;		
+	}
+	
 }

@@ -31,7 +31,7 @@ public class Triangle extends Shape {
 		Vector dirCrossEdge2 = Vector.cross(localRay.getDirection(), this.getE2());
 		float temp = Vector.dot(this.getE1(), dirCrossEdge2);
 		
-		if (Math.abs(temp) < this.DELTA) return null;
+		if (Math.abs(temp) < Triangle.DELTA) return null;
 		
 		float f = 1.0f / temp;
 		Vector p1ToOrigin = localRay.getOrigin().subtract(this.getP1());
@@ -72,6 +72,14 @@ public class Triangle extends Shape {
 	}
 	public Vector getN() {
 		return n;
+	}
+
+	@Override
+	public Bounds parentSpaceBounds() {
+		Bounds bounds = new Bounds();
+		bounds.boundsOf(this);
+		return bounds.setTransform(this.getTransform());
+//		return bounds;		
 	}
 
 }

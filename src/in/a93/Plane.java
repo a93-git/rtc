@@ -71,6 +71,14 @@ public class Plane extends Shape {
 	protected Vector localNormalAt(Point localPoint) {
 		return new Vector(0, 1, 0);
 	}
+
+	@Override
+	public Bounds parentSpaceBounds() {
+		Bounds bounds = new Bounds();
+		bounds.boundsOf(this);
+		return bounds.setTransform(this.getTransform());
+//		return bounds;		
+	}
 	
 	
 	

@@ -107,4 +107,12 @@ public class Cube extends Shape {
 		return new Vector(0, 0, localPoint.getZ());			
 	}
 
+	@Override
+	public Bounds parentSpaceBounds() {
+		Bounds bounds = new Bounds();
+		bounds.boundsOf(this);
+		return bounds.setTransform(this.getTransform());
+//		return bounds;		
+	}
+
 }

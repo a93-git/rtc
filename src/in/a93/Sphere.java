@@ -80,4 +80,12 @@ public class Sphere extends Shape {
 		return s;
 		
 	}
+
+	@Override
+	public Bounds parentSpaceBounds() {
+		Bounds bounds = new Bounds();
+		bounds.boundsOf(this);
+		return bounds.setTransform(this.getTransform());
+//		return bounds;		
+	}
 }
