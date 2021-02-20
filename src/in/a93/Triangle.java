@@ -78,7 +78,7 @@ public class Triangle extends Shape {
 	public Bounds parentSpaceBounds() {
 		Bounds bounds = new Bounds();
 		bounds.boundsOf(this);
-		return bounds.setTransform(this.getTransform());
+		return bounds.setTransformation(this.getTransform());
 //		return bounds;		
 	}
 

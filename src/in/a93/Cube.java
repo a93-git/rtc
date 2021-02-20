@@ -6,6 +6,7 @@ import java.util.UUID;
 public class Cube extends Shape {
 	private String uuid;
 	private static float DELTA = 0.00001f;
+
 	
 	public Cube() {
 		super();
@@ -111,8 +112,20 @@ public class Cube extends Shape {
 	public Bounds parentSpaceBounds() {
 		Bounds bounds = new Bounds();
 		bounds.boundsOf(this);
-		return bounds.setTransform(this.getTransform());
-//		return bounds;		
+		return bounds.setTransformation(this.getTransform());
+//		return bounds;
+	}
+
+	@Override
+	public Matrix getTransformInverse() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Matrix getTransformTransposeInverse() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

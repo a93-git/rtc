@@ -6,6 +6,9 @@ public abstract class Shape {
 	private Matrix transform;
 	private Material material;
 	private Group parent;
+	private Matrix inverse;
+	private Matrix transformTransposeInverse;
+	
 //	private static float DELTA = 0.00001f;
 	
 	public Shape() {
@@ -20,9 +23,11 @@ public abstract class Shape {
 	 */
 	public Ray getLocalRay(Shape shape, Ray originalRay) {
 		Ray ray = null;
+
 		try {
 			ray = Ray.transformRay(originalRay, Matrix.getInverseMatrix(shape.getTransform()));
-		} catch (MatrixNotInvertibleException e) {
+		} 
+		catch (MatrixNotInvertibleException e) {
 			e.printStackTrace();
 		}
 		
@@ -38,6 +43,8 @@ public abstract class Shape {
 			e.printStackTrace();
 			return localPoint;
 		}
+		
+//		invTransform = this.getTransformInverse();
 		
 		localPoint = Matrix.matrix2Point(Matrix.multiply(invTransform, Matrix.tuple2Matrix(point)));
 		
@@ -58,6 +65,8 @@ public abstract class Shape {
 			return null; // will break if it is ever returned
 		}
 		
+//		invTransform = this.getTransformInverse();
+		
 		return Matrix.matrix2Point(Matrix.multiply(invTransform, Matrix.tuple2Matrix(point)));
 	}
 	
@@ -70,6 +79,8 @@ public abstract class Shape {
 			e.printStackTrace();
 			return null; // will break if it is ever returned
 		}
+		
+//		invTransform = this.getTransformInverse();
 		
 		normal = Matrix.matrix2Vector(Matrix.multiply(Matrix.transpose(invTransform), Matrix.tuple2Matrix(normal)));
 		normal.setW(0);
@@ -116,17 +127,20 @@ public abstract class Shape {
 	 */
 	public Matrix getTransform() { return this.transform; }
 	public void setTransform(Matrix transform) { this.transform = transform; }
+
 	public Material getMaterial() { return this.material; }
 	public void setMaterial(Material material) { this.material = material; }
 	public String getUuid() { return "";}
 	public Group getParent() { return parent; }
 	public void setParent(Group parent) { this.parent = parent;	}
+	public Matrix getTransformInverse() { return this.inverse; }
+	public Matrix getTransformTransposeInverse() { return this.transformTransposeInverse; }
+	
 	
 	/*
 	 * Abstract methods
 	 */
 	public abstract Intersection[] intersect(Ray originalRay);
-
 	protected abstract Vector localNormalAt(Point localPoint);
 
 }

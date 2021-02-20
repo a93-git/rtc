@@ -41,8 +41,12 @@ public class Group extends Shape {
 	
 	@Override
 	public Intersection[] intersect(Ray originalRay) {
-		Ray localRay = super.getLocalRay(this, originalRay);
-		return this.localIntersect(localRay);		
+		if (this.parentSpaceBounds().rayIntersects(originalRay) == null) {
+			return null;
+		} else {
+			Ray localRay = super.getLocalRay(this, originalRay);
+			return this.localIntersect(localRay);					
+		}
 	}
 
 	private Intersection[] localIntersect(Ray localRay) {
@@ -55,11 +59,11 @@ public class Group extends Shape {
 		ArrayList<Intersection> temp = new ArrayList<Intersection>();
 		
 		for (Shape s : this.getChildren()) {
-			Intersection[] t = s.intersect(localRay);
-			if (!(t == null)) { // If there are no intersections, skip it
-				for (Intersection i : t) {
-					temp.add(i);
-				}
+				Intersection[] t = s.intersect(localRay);
+				if (!(t == null)) { // If there are no intersections, skip it
+					for (Intersection i : t) {
+						temp.add(i);
+					}
 			}
 		}
 		
@@ -91,9 +95,27 @@ public class Group extends Shape {
 	public Bounds parentSpaceBounds() {
 		Bounds bounds = new Bounds();
 		for (int i = 0; i < this.getChildren().size(); i++) {
+			Bounds temp = this.getChildren().get(i).parentSpaceBounds();
+			if (
+				 	   temp.getMaxExtent().getX() == Float.NEGATIVE_INFINITY   
+					|| temp.getMaxExtent().getY() == Float.NEGATIVE_INFINITY   
+					|| temp.getMaxExtent().getZ() == Float.NEGATIVE_INFINITY   
+					|| temp.getMinExtent().getX() == Float.POSITIVE_INFINITY
+					|| temp.getMinExtent().getY() == Float.POSITIVE_INFINITY
+					|| temp.getMinExtent().getZ() == Float.POSITIVE_INFINITY
+				) {
+				continue;
+			}
 			bounds.add(this.getChildren().get(i).parentSpaceBounds());
+//			System.out.println("x is: " + bounds.getMaxExtent().getX() + " for i: " + i);
 		}
 		return bounds;		
+	}
+
+	@Override
+	public Matrix getTransformInverse() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

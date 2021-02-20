@@ -11,7 +11,7 @@ public class Camera {
 	private float halfWidth;
 	private float halfHeight;
 	private static float DELTA = 0.00001f;
-	
+
 	public Camera(int hsize, int vsize, float fieldOfView) {
 		this.hsize = hsize;
 		this.vsize = vsize;
@@ -62,11 +62,13 @@ public class Camera {
 		return new Ray(origin, direction);
 	}
 	
+
 	public Canvas render(World w, int recursionDepth) {
 		Canvas image = new Canvas(this.getHsize(), this.getVsize());
 		
 		for (int y = 0; y < this.getVsize(); y++) {
 			for (int x = 0; x < this.getHsize(); x++) {
+//				System.out.println("Processing ray: " + (x+1) + ", " + (y+1));
 				Ray ray = this.rayForPixel(x, y);
 				Color color = World.getColorAt(w, ray, recursionDepth);
 				image.setColorAt(x, y, color);
@@ -81,7 +83,8 @@ public class Camera {
 	public float getHalfHeight() { return this.halfHeight; }
 	public Matrix getTransform() { return this.transform; }
 	
-	public void setTransform(Matrix transform) { this.transform = transform; }
+//	public void setTransform(Matrix transform) { this.transform = transform; this.updateTransformInverse();}
+	public void setTransform(Matrix transform) { this.transform = transform;}
 
 	public int getHsize() {
 		return hsize;

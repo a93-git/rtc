@@ -60,6 +60,7 @@ public class Plane extends Shape {
 			return worldNormal;
 		}
 
+		
 		Point localPoint = super.getLocalPoint(point, invTransposeTransform);
 		Vector localNormal = this.localNormalAt(localPoint); 
 		worldNormal = Matrix.matrix2Vector(Matrix.multiply(invTransposeTransform, Matrix.tuple2Matrix(localNormal)));
@@ -76,8 +77,8 @@ public class Plane extends Shape {
 	public Bounds parentSpaceBounds() {
 		Bounds bounds = new Bounds();
 		bounds.boundsOf(this);
-		return bounds.setTransform(this.getTransform());
-//		return bounds;		
+		bounds.setTransform(this.getTransform());
+		return bounds;		
 	}
 	
 	

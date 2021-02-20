@@ -17,6 +17,7 @@ public class Cone extends Shape {
 	private float min; // -y
 	private float max; // +y
 	private boolean capped;
+	private Matrix inverse;
 	
 	public Cone() {
 		super();
@@ -24,6 +25,7 @@ public class Cone extends Shape {
 		this.min = (float) Double.NEGATIVE_INFINITY;
 		this.max = (float) Double.POSITIVE_INFINITY;
 		this.capped = false;
+		this.inverse = Matrix.getIdentityInverse(4, 4);
 	}
 
 	@Override
@@ -201,8 +203,13 @@ public class Cone extends Shape {
 	public Bounds parentSpaceBounds() {
 		Bounds bounds = new Bounds();
 		bounds.boundsOf(this);
-		return bounds.setTransform(this.getTransform());
-//		return bounds;		
+		bounds.setTransform(this.getTransform());
+		return bounds;		
+	}
+
+	@Override
+	public Matrix getTransformInverse() {
+		return this.inverse;
 	}
 
 	

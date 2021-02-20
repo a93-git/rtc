@@ -1,5 +1,7 @@
 package in.a93;
 
+import java.util.HashMap;
+
 import in.a93.Exceptions.MatrixNotInvertibleException;
 
 public class Matrix {
@@ -10,12 +12,14 @@ public class Matrix {
 	private int matrixColumns;
 	private float[][] matrix;
 	private static final float DELTA = 0.00001f;
+	
 
 	public Matrix() {
 		this.matrixRows = 0;
 		this.matrixColumns = 0;
 		this.matrix = new float[this.matrixRows][this.matrixColumns];
 	}
+	
 	
 	public Matrix(int rows, int columns) {
 		this.matrixRows = rows;
@@ -43,9 +47,9 @@ public class Matrix {
 		return retval.toString();
 	}
 	
-	public int getRowCount() { return this.matrixRows; }
+	public int getRowCount() throws NullPointerException { return this.matrixRows; }
 	
-	public int getColumnCount() { return this.matrixColumns; }
+	public int getColumnCount() throws NullPointerException { return this.matrixColumns; }
 	
 	@Override
 	public boolean equals(Object obj) {
@@ -78,6 +82,15 @@ public class Matrix {
 		return result;
 	}	
 	
+	public static Matrix getIdentityInverse(int row, int column) {
+		try {
+			return Matrix.getInverseMatrix(Matrix.getIdentityMatrix(row, column));
+		} catch (MatrixNotInvertibleException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public static Matrix scalarMultiplication(Matrix m, float scalarValue) {
 		Matrix result = new Matrix(m.getRowCount(), m.getColumnCount());
 		
@@ -90,25 +103,32 @@ public class Matrix {
 		return result;
 	}
 
-	public static Matrix multiply(Matrix a, Matrix b) {
+	public static Matrix multiply(Matrix a, Matrix b) throws NullPointerException {
 //		Matrix a = (Matrix) matrix1;
 //		Matrix b = (Matrix) matrix2;
+		Matrix result = null;
 		
-		Matrix result = new Matrix(a.getRowCount(), b.getColumnCount());
-		
-		int rowCount = a.getRowCount();
-		int columnCount = b.getColumnCount();
-		int _rowsInSecondMatrix = b.getRowCount();
-		for (int i = 0; i < rowCount; i++) {
-			for (int j = 0; j < columnCount; j++) {
-				float _tempResult = 0.0f;
-				for (int k = 0; k < _rowsInSecondMatrix; k++) {
-					_tempResult += (a.getElementAt(i, k) * b.getElementAt(k, j));
+		try {
+			result = new Matrix(a.getRowCount(), b.getColumnCount());
+//			Matrix result = new Matrix(a.getRowCount(), b.getColumnCount());
+			int rowCount = a.getRowCount();
+			int columnCount = b.getColumnCount();
+			int _rowsInSecondMatrix = b.getRowCount();
+			for (int i = 0; i < rowCount; i++) {
+				for (int j = 0; j < columnCount; j++) {
+					float _tempResult = 0.0f;
+					for (int k = 0; k < _rowsInSecondMatrix; k++) {
+						_tempResult += (a.getElementAt(i, k) * b.getElementAt(k, j));
+					}
+					result.setElementAt(i, j, _tempResult);
 				}
-				result.setElementAt(i, j, _tempResult);
 			}
+			return result;
+		} catch (NullPointerException e) {
+			return null;
+//			e.printStackTrace();
 		}
-		return result;
+		
 	}
 	
 	public static Matrix transpose(Matrix a) {
@@ -174,6 +194,8 @@ public class Matrix {
 	}
 	
 	public static Matrix getInverseMatrix(Matrix a) throws MatrixNotInvertibleException {
+//		System.out.println("Inverting a matrix");
+				
 		if (!(Matrix.isInvertible(a))) {
 			throw new MatrixNotInvertibleException("Determinant of matrix is 0");
 		}
@@ -187,6 +209,7 @@ public class Matrix {
 				inverse.setElementAt(j, i, cofactor / determinant);
 			}
 		}
+		
 		
 		return inverse;
 	}
@@ -283,23 +306,31 @@ public class Matrix {
 	}
 	
 	public static Point matrix2Point(Matrix m) {
-		Point result = new Point();
-		result.setX(m.getElementAt(0, 0));
-		result.setY(m.getElementAt(1, 0));
-		result.setZ(m.getElementAt(2, 0));
-		result.setW(m.getElementAt(3, 0));
-
-		return result;
+		try {
+			Point result = new Point();
+			result.setX(m.getElementAt(0, 0));
+			result.setY(m.getElementAt(1, 0));
+			result.setZ(m.getElementAt(2, 0));
+			result.setW(m.getElementAt(3, 0));
+			
+			return result;			
+		} catch (NullPointerException e) {
+			return null;
+		}
 	}
 
 	public static Vector matrix2Vector(Matrix m) {
-		Vector result = new Vector(0, 0, 0);
-		result.setX(m.getElementAt(0, 0));
-		result.setY(m.getElementAt(1, 0));
-		result.setZ(m.getElementAt(2, 0));
-		result.setW(m.getElementAt(3, 0));
-		
-		return result;
+		try {
+			Vector result = new Vector(0, 0, 0);
+			result.setX(m.getElementAt(0, 0));
+			result.setY(m.getElementAt(1, 0));
+			result.setZ(m.getElementAt(2, 0));
+			result.setW(m.getElementAt(3, 0));
+			
+			return result;
+		} catch (NullPointerException e) {
+			return null;
+		}
 	}
 
 	public Matrix translate(float x, float y, float z) {

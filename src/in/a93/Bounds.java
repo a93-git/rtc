@@ -2,7 +2,7 @@ package in.a93;
 
 import java.util.ArrayList;
 
-public class Bounds {
+public class Bounds extends Shape {
 	public static final float DELTA = 0.00001f;
 	private Point minExtent;
 	private Point maxExtent;
@@ -113,7 +113,7 @@ public class Bounds {
 				&& this.containsPoint(bound.getMinExtent());
 	}
 
-	public Bounds setTransform(Matrix transformationMatrix) {
+	public Bounds setTransformation(Matrix transformationMatrix) {
 		Point[] points = new Point[8];
 		points[0] = this.getMinExtent();
 		points[1] = new Point(this.getMinExtent().getX(), this.getMinExtent().getY(), this.getMaxExtent().getZ());
@@ -131,5 +131,67 @@ public class Bounds {
 		}
 		
 		return newBox;
+	}
+	
+	public Intersection[] rayIntersects(Ray ray) {
+		
+		try {
+			float[] x = this.checkAxis(ray.getOrigin().getX(), ray.getDirection().getX(), this.getMinExtent().getX(), this.getMaxExtent().getX());
+			float[] y = this.checkAxis(ray.getOrigin().getY(), ray.getDirection().getY(), this.getMinExtent().getY(), this.getMaxExtent().getY());
+			float[] z = this.checkAxis(ray.getOrigin().getZ(), ray.getDirection().getZ(), this.getMinExtent().getZ(), this.getMaxExtent().getZ());
+			float tmin = Math.max(Math.max(x[0], y[0]), z[0]);
+			float tmax = Math.min(Math.min(x[1], y[1]), z[1]);
+
+			Intersection[] result = null;
+			
+			if (tmin > tmax) return result;
+			else { 
+				result = Intersection.intersections(new Intersection(tmin, this), new Intersection(tmax, this));
+				return result;
+			}
+		} catch (NullPointerException e) {
+		
+			return null;
+		}
+	}
+	
+	private float[] checkAxis(float origin, float direction, float min, float max) {
+		float tminN = (min - origin);
+		float tmaxN = (max - origin);
+		
+		float tmin, tmax;
+		
+		if (!(Math.abs(direction) > Bounds.DELTA)) direction += Bounds.DELTA;
+		tmin = tminN / direction;
+		tmax = tmaxN / direction;
+
+		
+		float[] result = new float[2];
+		
+		if (tmin > tmax) {
+			float _t = tmax;
+			tmax = tmin;
+			tmin = _t;
+		}
+		result[0] = tmin; result[1] = tmax;
+		return result;
+	}
+
+	@Override
+	public Bounds parentSpaceBounds() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Intersection[] intersect(Ray originalRay) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected Vector localNormalAt(Point localPoint) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
