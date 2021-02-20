@@ -6,10 +6,19 @@ public class Intersection implements Comparable<Intersection> {
 	private float t;
 	private Shape object;
 	private static float DELTA = 0.0001f;
+	private float u;
+	private float v;
 	
 	public Intersection(float t, Shape object) {
 		this.t = t;
 		this.object = object;
+	}
+	
+	public Intersection(float t, Shape shape, float u, float v) {
+		this.t = t;
+		this.object = shape;
+		this.u = u;
+		this.v = v;
 	}
 	
 	public static Intersection[] intersections(Intersection... intersections) {	
@@ -73,6 +82,15 @@ public class Intersection implements Comparable<Intersection> {
 		float r = (float) Math.pow(((computed.getFirstRI() - computed.getSecondRI()) / (computed.getFirstRI() + computed.getSecondRI())), 2);
 		return r + (1 - r) * (float) Math.pow((1 - cos), 5);
 	}
+
+	public float getU() {
+		return u;
+	}
+
+	public float getV() {
+		return v;
+	}
+	
 }
 
 

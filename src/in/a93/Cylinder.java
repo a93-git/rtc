@@ -70,7 +70,7 @@ public class Cylinder extends Shape {
 	}
 
 	@Override
-	protected Vector localNormalAt(Point localPoint) {
+	protected Vector localNormalAt(Point localPoint, Intersection intersection) {
 		float dSquare = (float) (Math.pow(localPoint.getX(), 2) + Math.pow(localPoint.getZ(), 2));
 		
 		if (dSquare < 1 

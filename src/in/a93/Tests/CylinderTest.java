@@ -48,10 +48,10 @@ public class CylinderTest {
 	
 	public static void test3() {
 		Cylinder c = new Cylinder();
-		Vector n = c.normalAt(new Point(1, 0, 0));
-		Vector n2 = c.normalAt(new Point(0, 5, -1));
-		Vector n3 = c.normalAt(new Point(0, -2, 1));
-		Vector n4 = c.normalAt(new Point(-1, 1, 0));
+		Vector n = c.normalAt(new Point(1, 0, 0), null);
+		Vector n2 = c.normalAt(new Point(0, 5, -1), null);
+		Vector n3 = c.normalAt(new Point(0, -2, 1), null);
+		Vector n4 = c.normalAt(new Point(-1, 1, 0), null);
 		
 		System.out.println("n: " + n);
 		System.out.println("n2: " + n2);

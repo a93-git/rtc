@@ -57,7 +57,7 @@ public class SphereSilhouette {
 					Intersection hit = Intersection.getHit(xs); 
 					if (!(hit == null)) {
 						Point point = Ray.getPosition(ray, hit.getT());
-						Vector normalVector = sphere.normalAt(point);
+						Vector normalVector = sphere.normalAt(point, null);
 						Vector eyeVector = ray.getDirection().scalarMultiply(-1);
 						color = Material.getLighting(hit.getObject().getMaterial(), light, point, eyeVector, normalVector, false, null);
 						canvas.setColorAt(i, j, color);

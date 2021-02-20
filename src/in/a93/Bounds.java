@@ -190,7 +190,7 @@ public class Bounds extends Shape {
 	}
 
 	@Override
-	protected Vector localNormalAt(Point localPoint) {
+	protected Vector localNormalAt(Point localPoint, Intersection intersection) {
 		// TODO Auto-generated method stub
 		return null;
 	}

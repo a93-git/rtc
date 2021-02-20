@@ -6,9 +6,9 @@ public class PlaneTest {
 	public static void test1() {
 		Plane p = new Plane();
 		
-		Vector n1 = p.normalAt(new Point(0, 0, 0));
-		Vector n2 = p.normalAt(new Point(10, 0, -10));
-		Vector n3 = p.normalAt(new Point(-5, 0, 150));
+		Vector n1 = p.normalAt(new Point(0, 0, 0), null);
+		Vector n2 = p.normalAt(new Point(10, 0, -10), null);
+		Vector n3 = p.normalAt(new Point(-5, 0, 150), null);
 		
 		System.out.println(n1);
 		System.out.println(n2);

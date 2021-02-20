@@ -125,7 +125,7 @@ public class GroupTest {
 		
 		g2.addChild(s);
 		
-		Vector n = s.normalAt(new Point(1.7321f, 1.1547f, -5.5774f));
+		Vector n = s.normalAt(new Point(1.7321f, 1.1547f, -5.5774f), null);
 		System.out.println("NormalToWorld vector is: " + n);
 		
 	}

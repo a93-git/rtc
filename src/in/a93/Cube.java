@@ -94,7 +94,7 @@ public class Cube extends Shape {
 	}
 
 	@Override
-	protected Vector localNormalAt(Point localPoint) {
+	protected Vector localNormalAt(Point localPoint, Intersection intersection) {
 		float max = Math.max(
 				Math.abs(localPoint.getX()), 
 				Math.max(

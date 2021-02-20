@@ -88,7 +88,7 @@ public class CubeTest {
 		origin.add(new Point(1, 1, 1));
 		
 		for (int i = 0; i < direction.size(); i++) {
-			Vector normal = c.normalAt(origin.get(i));
+			Vector normal = c.normalAt(origin.get(i), null);
 			
 			System.out.println("Normal at: " + origin.get(i) + " is: " + normal);
 		}

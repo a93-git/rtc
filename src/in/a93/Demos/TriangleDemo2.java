@@ -39,28 +39,28 @@ public class TriangleDemo2 {
 		w.addObjects(backWall);
 		
 		w.getLight().get(0).setPosition(new Point(-32, 21, -18));
-//		Cube cube = new Cube();
-//		Bounds boundingBox = w.getObjects().get(0).parentSpaceBounds(); 
-//		float x = Math.abs(boundingBox.getMaxExtent().getX() - boundingBox.getMinExtent().getX());
-//		float y = Math.abs(boundingBox.getMaxExtent().getY() - boundingBox.getMinExtent().getY());
-//		float z = Math.abs(boundingBox.getMaxExtent().getZ() - boundingBox.getMinExtent().getZ());
-//
-//		System.out.println(x + ", " + y + ", " + z);
-//		
-//		cube.setTransform(cube.getTransform().scale(x, y, z));
-//		cube.getMaterial().setColor(new Color(1, 1, 0));
-//		cube.getMaterial().setAmbient(0.1f);
-//		cube.getMaterial().setDiffuse(0.2f);
-//		cube.getMaterial().setSpecular(0);
-//		cube.getMaterial().setShininess(0);
-//		cube.getMaterial().setReflective(0);
-//		cube.getMaterial().setTransparency(0.8f);
-//		cube.getMaterial().setRefractiveIndex(1);
-	    
-//		w.addObjects(cube);
+		Cube cube = new Cube();
+		Bounds boundingBox = w.getObjects().get(0).parentSpaceBounds(); 
+		float x = Math.abs(boundingBox.getMaxExtent().getX() - boundingBox.getMinExtent().getX());
+		float y = Math.abs(boundingBox.getMaxExtent().getY() - boundingBox.getMinExtent().getY());
+		float z = Math.abs(boundingBox.getMaxExtent().getZ() - boundingBox.getMinExtent().getZ());
+
+		System.out.println(x + ", " + y + ", " + z);
 		
-		Camera camera = new Camera(360, 240, (float) Math.PI / 1.4f);
-		camera.setTransform(Matrix.multiply(camera.getTransform(), Matrix.getViewTransform(new Point(0, 20, -20), new Point(0, 1, 0), new Vector(0, 1, 0))));
+		cube.setTransform(cube.getTransform().scale(x, y, z));
+		cube.getMaterial().setColor(new Color(1, 0, 0));
+		cube.getMaterial().setAmbient(0.1f);
+		cube.getMaterial().setDiffuse(0.2f);
+		cube.getMaterial().setSpecular(1);
+		cube.getMaterial().setShininess(1);
+		cube.getMaterial().setReflective(0.2f);
+		cube.getMaterial().setTransparency(1);
+		cube.getMaterial().setRefractiveIndex(1);
+	    
+		w.addObjects(cube);
+		
+		Camera camera = new Camera(180, 120, (float) Math.PI / 1.4f);
+		camera.setTransform(Matrix.multiply(camera.getTransform(), Matrix.getViewTransform(new Point(0, 30, -30), new Point(0, 1, 0), new Vector(0, 1, 0))));
 		
 		
 		System.out.println("Rendering world");

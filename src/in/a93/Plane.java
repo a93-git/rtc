@@ -49,7 +49,7 @@ public class Plane extends Shape {
 	 * Transform the point by (the inverse of the transpose) of the transformation matrix of the object
 	 */
 	@Override
-	public Vector normalAt(Point point) {		
+	public Vector normalAt(Point point, Intersection intersection) {		
 		Vector worldNormal = null;
 		Matrix invTransposeTransform = null;
 		
@@ -62,14 +62,14 @@ public class Plane extends Shape {
 
 		
 		Point localPoint = super.getLocalPoint(point, invTransposeTransform);
-		Vector localNormal = this.localNormalAt(localPoint); 
+		Vector localNormal = this.localNormalAt(localPoint, null); 
 		worldNormal = Matrix.matrix2Vector(Matrix.multiply(invTransposeTransform, Matrix.tuple2Matrix(localNormal)));
 		worldNormal.setW(0);
 		return Vector.normalize(worldNormal);
 	}
 
 	@Override
-	protected Vector localNormalAt(Point localPoint) {
+	protected Vector localNormalAt(Point localPoint, Intersection intersection) {
 		return new Vector(0, 1, 0);
 	}
 

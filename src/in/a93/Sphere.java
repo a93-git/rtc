@@ -65,7 +65,7 @@ public class Sphere extends Shape {
 		return result;		
 	}
 
-	protected Vector localNormalAt(Point localPoint) {
+	protected Vector localNormalAt(Point localPoint, Intersection intersection) {
 		Vector worldNormal = null;
 		Vector objectNormal = localPoint.subtract(new Point());
 		

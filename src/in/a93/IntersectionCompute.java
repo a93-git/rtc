@@ -23,7 +23,7 @@ public class IntersectionCompute {
 		this.object = intersection.getObject();
 		this.point = Ray.getPosition(ray, intersection.getT());
 		this.eyeVector = ray.getDirection().scalarMultiply(-1);
-		Vector _tempNormalVector = intersection.getObject().normalAt(this.point);
+		Vector _tempNormalVector = intersection.getObject().normalAt(this.point, intersection);
 		
 		if (Vector.dot(_tempNormalVector, eyeVector) < 0) {
 			this.inside = true;

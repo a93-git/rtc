@@ -46,11 +46,11 @@ public class Triangle extends Shape {
 		
 		float t = f * Vector.dot(this.getE2(), originCrossEdge1);
 		
-		return Intersection.intersections(new Intersection(t, this));
+		return Intersection.intersections(new Intersection(t, this, u, v));
 	}
 	
 	@Override
-	protected Vector localNormalAt(Point localPoint) {
+	protected Vector localNormalAt(Point localPoint, Intersection intersection) {
 		// In case of triangles, the normal is same at everypoint
 		return this.getN();
 	}

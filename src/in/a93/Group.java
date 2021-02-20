@@ -80,13 +80,13 @@ public class Group extends Shape {
 	}
 
 	@Override
-	public Vector normalAt(Point point) {
+	public Vector normalAt(Point point, Intersection intersection) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	protected Vector localNormalAt(Point localPoint) {
+	protected Vector localNormalAt(Point localPoint, Intersection intersection) {
 		// TODO Auto-generated method stub
 		return null;
 	}

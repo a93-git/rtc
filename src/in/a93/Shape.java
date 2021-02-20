@@ -93,9 +93,9 @@ public abstract class Shape {
 		return normal;
 	}
 	
-	public Vector normalAt(Point point) {
+	public Vector normalAt(Point point, Intersection intersection) {
 		Point localPoint = this.worldToObject(point);
-		Vector localNormal = this.localNormalAt(localPoint); 
+		Vector localNormal = this.localNormalAt(localPoint, intersection); 
 		return this.normalToWorld(localNormal);
 	}
 	
@@ -141,6 +141,6 @@ public abstract class Shape {
 	 * Abstract methods
 	 */
 	public abstract Intersection[] intersect(Ray originalRay);
-	protected abstract Vector localNormalAt(Point localPoint);
+	protected abstract Vector localNormalAt(Point localPoint, Intersection intersection);
 
 }
