@@ -1,11 +1,11 @@
 package in.a93;
 
 import in.a93.Demos.*;
-import in.a93.Tests.SmoothTriangleTest;
+import in.a93.Tests.ObjFileTest;
 
 public class Raytracer {
 	public static void main(String[] args) {
-		SmoothTriangleTest.test5();
+		ObjFileTest.test7();
 		
 	}
 }

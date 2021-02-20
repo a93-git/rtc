@@ -1,6 +1,6 @@
 package in.a93;
 
-public class SmoothTriangle extends Shape{
+public class SmoothTriangle extends Triangle{
 	private static final float DELTA = 0.00001f;
 	private Point p1;
 	private Point p2;
