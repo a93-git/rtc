@@ -12,7 +12,7 @@ public class Matrix {
 	private int matrixColumns;
 	private float[][] matrix;
 	private static final float DELTA = 0.00001f;
-	public static HashMap<Matrix, Matrix> inverseMatMap = new HashMap<Matrix, Matrix>(100);
+	public static HashMap<Matrix, Matrix> inverseMatMap = new HashMap<Matrix, Matrix>();
 	public static int count = 1;
 	
 	public Matrix() {
@@ -211,9 +211,9 @@ public class Matrix {
 		
 		
 		if (retval == null) {
-			long startTime = System.nanoTime();
-			System.out.println("Count is: " + count);
-			count = count + 1;
+//			long startTime = System.nanoTime();
+//			System.out.println("Count is: " + count);
+//			count = count + 1;
 			if (!(Matrix.isInvertible(a))) {
 				throw new MatrixNotInvertibleException("Determinant of matrix is 0");
 			}
@@ -230,9 +230,9 @@ public class Matrix {
 			
 			Matrix.inverseMatMap.put(a, inverse);
 			retval = inverse;
-			System.out.println("Size of inverseMatrix array is: " + Matrix.inverseMatMap.size());
-			long endTime = System.nanoTime();
-			System.out.println("Time to find inverse: " + (endTime - startTime));
+//			System.out.println("Size of inverseMatrix array is: " + Matrix.inverseMatMap.size());
+//			long endTime = System.nanoTime();
+//			System.out.println("Time to find inverse: " + (endTime - startTime));
 		}
 		
 		

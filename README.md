@@ -37,3 +37,4 @@ The Utah teapot OBJ file can be downloaded from - https://graphics.cs.utah.edu/c
 All rights reserved with the creator of the Utah teapot OBJ file. The file needs to be modified to be used with this ray tracer. 
 The modified file can be found in the OBJ folder.
 ![triangle-demo-2](https://github.com/a93-git/rtc/blob/master/images/utahteapot.jpg)
+![smooth-triangle-demo](https://github.com/a93-git/rtc/blob/master/images/utahteapot-smooth.jpg)

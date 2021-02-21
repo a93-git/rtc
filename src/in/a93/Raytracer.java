@@ -5,7 +5,7 @@ import in.a93.Tests.ObjFileTest;
 
 public class Raytracer {
 	public static void main(String[] args) {
-		SmoothTriangleDemo.drawWorld("E:\\smoothtriangle.ppm");
+		SmoothTriangleDemo.drawWorld(args[0]);
 		
 	}
 }

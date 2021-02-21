@@ -1,8 +1,5 @@
 package in.a93;
 
-import java.util.ArrayList;
-import java.lang.Thread;
-
 import in.a93.Exceptions.MatrixNotInvertibleException;
 
 public class Camera {
