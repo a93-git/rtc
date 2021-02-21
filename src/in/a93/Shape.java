@@ -25,7 +25,10 @@ public abstract class Shape {
 		Ray ray = null;
 
 		try {
-			ray = Ray.transformRay(originalRay, Matrix.getInverseMatrix(shape.getTransform()));
+			Matrix invTransform = null;
+			if (Matrix.inverseMatMap.containsKey(shape.getTransform())) {System.out.println("Here"); invTransform = Matrix.inverseMatMap.get(shape.getTransform());}
+			else invTransform = Matrix.getInverseMatrix(shape.getTransform());
+			ray = Ray.transformRay(originalRay, invTransform);
 		} 
 		catch (MatrixNotInvertibleException e) {
 			e.printStackTrace();
@@ -38,7 +41,8 @@ public abstract class Shape {
 		Point localPoint = null;
 		
 		try {	
-			invTransform = Matrix.getInverseMatrix(this.getTransform());
+			if (Matrix.inverseMatMap.containsKey(this.getTransform())) { System.out.println("Here"); invTransform = Matrix.inverseMatMap.get(this.getTransform());}
+			else invTransform = Matrix.getInverseMatrix(this.getTransform());
 		} catch (MatrixNotInvertibleException e) {
 			e.printStackTrace();
 			return localPoint;
@@ -59,7 +63,8 @@ public abstract class Shape {
 		Matrix invTransform = null;
 		
 		try {	
-			invTransform = Matrix.getInverseMatrix(this.getTransform());
+			if (Matrix.inverseMatMap.containsKey(this.getTransform())) invTransform = Matrix.inverseMatMap.get(this.getTransform());
+			else invTransform = Matrix.getInverseMatrix(this.getTransform());
 		} catch (MatrixNotInvertibleException e) {
 			e.printStackTrace();
 			return null; // will break if it is ever returned
@@ -74,7 +79,8 @@ public abstract class Shape {
 		Matrix invTransform = null;
 		
 		try {	
-			invTransform = Matrix.getInverseMatrix(this.getTransform());
+			if (Matrix.inverseMatMap.containsKey(this.getTransform())) invTransform = Matrix.inverseMatMap.get(this.getTransform());
+			else invTransform = Matrix.getInverseMatrix(this.getTransform());
 		} catch (MatrixNotInvertibleException e) {
 			e.printStackTrace();
 			return null; // will break if it is ever returned

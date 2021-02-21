@@ -1,5 +1,8 @@
 package in.a93;
 
+import java.util.ArrayList;
+import java.lang.Thread;
+
 import in.a93.Exceptions.MatrixNotInvertibleException;
 
 public class Camera {
@@ -49,7 +52,8 @@ public class Camera {
 		Matrix invTransform = null;
 		
 		try {
-			invTransform = Matrix.getInverseMatrix(this.getTransform());
+			if (Matrix.inverseMatMap.containsKey(this.getTransform())) invTransform = Matrix.inverseMatMap.get(this.getTransform());
+			else invTransform = Matrix.getInverseMatrix(this.getTransform());
 		} catch (MatrixNotInvertibleException e) {
 			e.printStackTrace();
 		}
@@ -63,6 +67,7 @@ public class Camera {
 	}
 	
 
+	
 	public Canvas render(World w, int recursionDepth) {
 		Canvas image = new Canvas(this.getHsize(), this.getVsize());
 		

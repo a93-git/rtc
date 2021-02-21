@@ -9,6 +9,7 @@ public class Triangle extends Shape {
 	private Vector e1; //edge 1
 	private Vector e2; //edge 2
 	private Vector n; //normal
+	private Intersection[] savedXs; 
 	
 	public Triangle() {	}
 	

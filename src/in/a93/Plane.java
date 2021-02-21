@@ -54,7 +54,8 @@ public class Plane extends Shape {
 		Matrix invTransposeTransform = null;
 		
 		try {	
-			invTransposeTransform = Matrix.getInverseMatrix(Matrix.transpose(this.getTransform()));
+			if (Matrix.inverseMatMap.containsKey(this.getTransform())) invTransposeTransform = Matrix.inverseMatMap.get(this.getTransform());
+			else invTransposeTransform = Matrix.getInverseMatrix(Matrix.transpose(this.getTransform()));
 		} catch (MatrixNotInvertibleException e) {
 			e.printStackTrace();
 			return worldNormal;

@@ -12,6 +12,7 @@ public class SmoothTriangle extends Triangle{
 	private Vector n1;
 	private Vector n2;
 	private Vector n3;
+
 	
 	public SmoothTriangle(Point p1, Point p2, Point p3, Vector n1, Vector n2, Vector n3) {
 		this.p1 = p1;
@@ -23,6 +24,7 @@ public class SmoothTriangle extends Triangle{
 		
 		this.e1 = p2.subtract(p1);
 		this.e2 = p3.subtract(p1);
+
 	}
 	
 	public Vector getE1() {

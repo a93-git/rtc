@@ -38,7 +38,6 @@ public class ObjFile {
 		        	this.groups.add(newGroup);
 		        } else if (match.matches()) {
 		        	String[] lineValues = line.split(" ");
-		        	System.out.println("lineValues[0] = " + lineValues[0]);
 		        	if (lineValues[0].equals("v")) {
 		        		parseVertex(lineValues);
 		        	} else if (lineValues[0].equals("f")) {
@@ -72,7 +71,6 @@ public class ObjFile {
 		
 		for (int i = 1; i < lineValues.length; i++) {
 			String[] faceValues = lineValues[i].split("/");
-			System.out.println(faceValues[2]);
 			int p = Integer.valueOf(faceValues[0]).intValue();
 			
 			// Elements in points need to start from 0 and i starts from 1; hence, i-1
@@ -111,7 +109,6 @@ public class ObjFile {
 	
 	private Triangle[] parsePolygon(Point[] points, Vector[] normals) {
 		if (normals[0] == null) {
-			System.out.println("Here");
 			Triangle[] triangles = new Triangle[points.length - 2]; // https://en.wikipedia.org/wiki/Fan_triangulation
 			//  pick one starting vertex, a
 			Point startingVertex = points[0];
@@ -136,8 +133,6 @@ public class ObjFile {
 				SmoothTriangle st = new SmoothTriangle(startingVertex, points[i], points[i + 1], startingVertexNormal, normals[i], normals[i + 1]);
 				smoothTriangles[i - 1] = st;
 			}
-			
-			System.out.println(smoothTriangles);
 			return smoothTriangles;			
 			
 		}

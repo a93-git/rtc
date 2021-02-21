@@ -125,7 +125,7 @@ public class ObjFileTest {
 //	}
 	
 	public static void test7() {
-		Path filePath = Path.of("C:\\Users\\win10\\Desktop\\vn.obj");
+		Path filePath = Path.of("C:\\Users\\win10\\Desktop\\teapot-low.obj");
 		ObjFile o = new ObjFile(filePath);
 		o.parseObjFile();
 		

@@ -90,6 +90,22 @@ public class Intersection implements Comparable<Intersection> {
 	public float getV() {
 		return v;
 	}
+
+	public void setT(float t) {
+		this.t = t;
+	}
+
+	public void setObject(Shape object) {
+		this.object = object;
+	}
+
+	public void setU(float u) {
+		this.u = u;
+	}
+
+	public void setV(float v) {
+		this.v = v;
+	}
 	
 }
 

@@ -12,8 +12,9 @@ public class Matrix {
 	private int matrixColumns;
 	private float[][] matrix;
 	private static final float DELTA = 0.00001f;
+	public static HashMap<Matrix, Matrix> inverseMatMap = new HashMap<Matrix, Matrix>(100);
+	public static int count = 1;
 	
-
 	public Matrix() {
 		this.matrixRows = 0;
 		this.matrixColumns = 0;
@@ -195,23 +196,67 @@ public class Matrix {
 	
 	public static Matrix getInverseMatrix(Matrix a) throws MatrixNotInvertibleException {
 //		System.out.println("Inverting a matrix");
-				
-		if (!(Matrix.isInvertible(a))) {
-			throw new MatrixNotInvertibleException("Determinant of matrix is 0");
-		}
+		Matrix retval = null;
+		// New part
+//		if (!Matrix.inverseMatMap.isEmpty()) {
+//			for (Matrix m : Matrix.inverseMatMap.keySet()) {
+//				if (m.equals(a)) {
+//					retval = Matrix.inverseMatMap.get(m);
+//					break;
+//				}
+//			}
+//		}
+
+		if (Matrix.inverseMatMap.containsKey(a)) { System.out.println("Here"); retval = Matrix.inverseMatMap.get(a); }
 		
-		Matrix inverse = new Matrix(a.getRowCount(), a.getColumnCount());
-		float determinant = Matrix.getDeterminant(a);
 		
-		for (int i = 0; i < a.getRowCount(); i++) {
-			for (int j = 0; j < a.getColumnCount(); j++) {
-				float cofactor = Matrix.getCofactor(a, i, j);
-				inverse.setElementAt(j, i, cofactor / determinant);
+		if (retval == null) {
+			long startTime = System.nanoTime();
+			System.out.println("Count is: " + count);
+			count = count + 1;
+			if (!(Matrix.isInvertible(a))) {
+				throw new MatrixNotInvertibleException("Determinant of matrix is 0");
 			}
+			
+			Matrix inverse = new Matrix(a.getRowCount(), a.getColumnCount());
+			float determinant = Matrix.getDeterminant(a);
+			
+			for (int i = 0; i < a.getRowCount(); i++) {
+				for (int j = 0; j < a.getColumnCount(); j++) {
+					float cofactor = Matrix.getCofactor(a, i, j);
+					inverse.setElementAt(j, i, cofactor / determinant);
+				}
+			}
+			
+			Matrix.inverseMatMap.put(a, inverse);
+			retval = inverse;
+			System.out.println("Size of inverseMatrix array is: " + Matrix.inverseMatMap.size());
+			long endTime = System.nanoTime();
+			System.out.println("Time to find inverse: " + (endTime - startTime));
 		}
 		
 		
-		return inverse;
+		return retval;
+		// ------------------
+		
+		
+//		System.out.println("a is: " + a.getElementAt(0, 0));
+//		if (!(Matrix.isInvertible(a))) {
+//			throw new MatrixNotInvertibleException("Determinant of matrix is 0");
+//		}
+//		
+//		Matrix inverse = new Matrix(a.getRowCount(), a.getColumnCount());
+//		float determinant = Matrix.getDeterminant(a);
+//		
+//		for (int i = 0; i < a.getRowCount(); i++) {
+//			for (int j = 0; j < a.getColumnCount(); j++) {
+//				float cofactor = Matrix.getCofactor(a, i, j);
+//				inverse.setElementAt(j, i, cofactor / determinant);
+//			}
+//		}
+		
+		
+//		return inverse;
 	}
 
 	public static Matrix translation(float x, float y, float z) {
@@ -384,8 +429,6 @@ public class Matrix {
 		
 		return result;
 	}
-
-
 
 
 
