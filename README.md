@@ -9,57 +9,57 @@ Java implementation of the ray tracer described in <a href="https://learning.ore
 	<summary>
 		Chapter 6 - Light and Shading
 	</summary>
-	![sphere](https://github.com/a93-git/rtc/blob/master/images/sphere.jpg)
+	<img src=https://github.com/a93-git/rtc/blob/master/images/sphere.jpg>
 </details>
 
 <details>
     <summary>
     	Chapter 7 - Making a Scene
     </summary>
-    ![sphere2](https://github.com/a93-git/rtc/blob/master/images/sphere2.jpg)
+    <img src=https://github.com/a93-git/rtc/blob/master/images/sphere2.jpg>
 </details>
 
 <details>
     <summary>
     	Chapter 8 - Shadows
     </summary>
-    ![scene_with_shadows](https://github.com/a93-git/rtc/blob/master/images/sphere2_with_shadows.jpg)
+    <img src=https://github.com/a93-git/rtc/blob/master/images/sphere2_with_shadows.jpg>
 </details>
 
 <details>
     <summary>Chapter 9 - Planes</summary>
-![spheres_on_plane](https://github.com/a93-git/rtc/blob/master/images/spheres_on_plane.jpg)
+<img src=https://github.com/a93-git/rtc/blob/master/images/spheres_on_plane.jpg>
 </details>
 
 <details>
     <summary>Chapter 10 - Patterns</summary>
-    ![patterns](https://github.com/a93-git/rtc/blob/master/images/patterns_demo2.jpg)
+    <img src=https://github.com/a93-git/rtc/blob/master/images/patterns_demo2.jpg>
 </details>
 
 <details>
     <summary>Chapter 11 - Reflection and Refraction</summary>
-    ![ch11-cover](https://github.com/a93-git/rtc/blob/master/images/ch11cover.jpg)
+    <img src=https://github.com/a93-git/rtc/blob/master/images/ch11cover.jpg>
 </details>
 
 <details>
     <summary>Chapter 12 - Cubes</summary>
-    ![cube-demo](https://github.com/a93-git/rtc/blob/master/images/cube_demo.jpg)
+    <img src=https://github.com/a93-git/rtc/blob/master/images/cube_demo.jpg>
 </details>
 
 <details>
     <summary>Chapter 13 - Cylinders</summary>
-    ![cylinder-demo](https://github.com/a93-git/rtc/blob/master/images/cylinder_demo.jpg)
-    ![cone-demo](https://github.com/a93-git/rtc/blob/master/images/cone_demo.jpg)
+    <img src=https://github.com/a93-git/rtc/blob/master/images/cylinder_demo.jpg>
+    <img src=https://github.com/a93-git/rtc/blob/master/images/cone_demo.jpg>
 </details>
 
 <details>
     <summary>Chapter 14 - Groups</summary>
-    ![groups-demo](https://github.com/a93-git/rtc/blob/master/images/group_demo.jpg)
+    <img src=https://github.com/a93-git/rtc/blob/master/images/group_demo.jpg>
 </details>
 
 <details>
     <summary>Chapter 15 - Triangles</summary>
-    ![triangle-demo](https://github.com/a93-git/rtc/blob/master/images/triangle_demo.jpg)
+    <img src=https://github.com/a93-git/rtc/blob/master/images/triangle_demo.jpg>
     <p>
         The Utah teapot OBJ file can be downloaded from - <a href="https://graphics.cs.utah.edu/courses/cs6620/fall2017/prj05/teapot-low.obj"></a>
     </p>
@@ -67,7 +67,7 @@ Java implementation of the ray tracer described in <a href="https://learning.ore
         The file needs to be modified to be used with this ray tracer. 
 		The modified file can be found in the OBJ folder.
     </p>
-    ![triangle-demo-2](https://github.com/a93-git/rtc/blob/master/images/utahteapot.jpg)
-    ![smooth-triangle-demo](https://github.com/a93-git/rtc/blob/master/images/utahteapot-smooth.jpg)
+    <img src=https://github.com/a93-git/rtc/blob/master/images/utahteapot.jpg>
+    <img src=https://github.com/a93-git/rtc/blob/master/images/utahteapot-smooth.jpg>
 </details>
 
